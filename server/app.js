@@ -18,8 +18,8 @@ app.use(express.urlencoded());
 app.use('/api/User', user);
 app.use('/api/Diary', diary);
 app.use('/api/Meeting', meeting);
-app.use('/api/Account', account);
+app.use('/api/Account', account)
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Example app listening on port ${port} :)`)
 })
