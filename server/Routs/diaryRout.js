@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const diaryController = require('../Controllers/Diary');
+const diaryController = require('../Controllers/diaryController');
 
 
 router.get('/:id/diary', diaryController.getDiary);

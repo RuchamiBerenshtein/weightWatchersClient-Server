@@ -1,5 +1,5 @@
 const express = require('express'); 
 const router = express.Router();
-const accountController = require('../Controllers/Account');
+const accountController = require('../Controllers/accountController');
 
 router.post('/', accountController.addAccount);

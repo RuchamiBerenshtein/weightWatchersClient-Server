@@ -1,3 +1,6 @@
+const diaryService = require('../services/diaryService');
+
+
 module.exports.getDiary = async function (req, res) {
     
 }

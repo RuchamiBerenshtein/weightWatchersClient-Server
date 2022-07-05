@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const user = require('./Routs/User');
-const diary = require('./Routs/Diary');
-const meeting = require('./Routs/Meeting');
-const account = require('./Routs/Account');
+const user = require('./Routs/userRout');
+const diary = require('./Routs/diaryRout');
+const meeting = require('./Routs/meetingRout');
+const account = require('./Routs/accountRout');
 
 const port = 8080
 

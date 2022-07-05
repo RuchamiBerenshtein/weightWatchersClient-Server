@@ -1,3 +1,5 @@
+const meetingService = require('../services/meetingService');
+
 module.exports.getAllMeeting = async function (req, res) {
     
 }

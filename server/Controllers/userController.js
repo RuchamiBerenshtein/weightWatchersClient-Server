@@ -1,3 +1,5 @@
+const userService = require('../services/userService');
+
 module.exports.getAll = async function (req, res) {
 }
 
