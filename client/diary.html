@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diary</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="dailyMeals()">
+
+    <div id="toBlur">
+        <table>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Breakfast</th>
+                    <th>Lunch</th>
+                    <th>Dinner</th>
+                    <th>Snack</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="dailyMeals"></tbody>
+        </table>
+
+        <button onclick="addDay()">Add Day</button>
+    </div>
+
+    <div id="addDay">
+        <h3>Add a daily meals</h3>
+        <label>Date</label> <input type="date" name="date" id="date">
+        <table>
+            <thead>
+                <tr>
+                    <th>Breakfast</th>
+                    <th>Lunch</th>
+                    <th>Dinner</th>
+                    <th>Snack</th>
+                </tr>
+            </thead>
+            <tbody id="mealsMenu"></tbody>
+        </table>
+        <button onclick="saveDaily()">Save Daily Meals</button>
+    </div>
+
+    <script src="/src/diary.js"></script>
+</body>
+
+</html>

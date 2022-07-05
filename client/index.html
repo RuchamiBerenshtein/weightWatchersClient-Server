@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Watchers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="onload()">
+
+    <select id="selectSearch" onchange="option()">
+        <option value="choose"></option>
+        <option id="searchByFName" value="searchByFName">search by first name</option>
+        <option id="searchByLName" value="searchByLName">search by last name</option>
+        <option id="searchByBMI" value="searchByBMI">search by BMI</option>
+    </select><br/>  
+
+    <div style="display:none" id="firstName">
+        <input type="text" id="fname">
+        <button onclick="searchByFName()">
+            search
+        </button>
+    </div>
+    <div style="display:none" id="lastName">
+        <input type="text" id="lname">
+        <button onclick="searchByLName()">
+            search
+        </button>
+    </div>
+    <div style="display:none" id="BMI">
+        <input type="number" id="minBMI" step="0.01">
+        <input type="number" id="maxBMI" step="0.01">
+        <button onclick="searchByBMI()">
+            search
+        </button>
+    </div><br/>
+
+    <div id="toBlur">
+        <table>
+            <thead>
+                <tr>
+                    <th>first name</th>
+                    <th>last name</th>
+                    <th>BMI</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="users"></tbody>
+        </table>
+
+        <button onclick="addMeeting()">Add Meeting</button>
+    </div>
+
+    <div id="addMeeting">
+        <h3>Create a new meeting</h3>
+        <label>Date</label> <input type="date" name="date" id="date">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>New Weight</th>
+                </tr>
+            </thead>
+            <tbody id="newUsersWeight"></tbody>
+        </table>
+        <button onclick="saveMeet()">Save Meeting</button>
+    </div>
+
+    <script src="/src/address.js"></script>
+    <script src="/src/user.js"></script>
+    <script src="/src/manager.js"></script>
+    <script src="/src/index.js"></script>
+</body>
+
+</html>
