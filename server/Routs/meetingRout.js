@@ -14,3 +14,4 @@ router.put('/:id', meetingController.updateMeeting);
 
 router.delete('/:id', meetingController.deleteMeeting);
 
+module.exports = router;

@@ -10,3 +10,5 @@ router.post('/:id/diary',diaryController.addNewDay);
 router.post('/:id/diary/:id',diaryController.updateDay);
 
 router.delete('/:id/diary/:id',diaryController.deleteDay);
+
+module.exports = router;
