@@ -20,6 +20,12 @@ app.use('/api/Diary', diary);
 app.use('/api/Meeting', meeting);
 app.use('/api/Account', account)
 
+app.use((err,req,res,next) => {
+  console.error(err.message)
+  res.status(500).send('oooooof Something broke! 😒')
+})
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port} :)`)
 })
