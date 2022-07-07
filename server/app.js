@@ -6,7 +6,7 @@ const diary = require('./Routs/diaryRout');
 const meeting = require('./Routs/meetingRout');
 const account = require('./Routs/accountRout');
 
-const port = 8080;
+const port = 3000;
 
 app.use(cors());
 app.use(express.json());
