@@ -58,11 +58,12 @@ const updateUser = async (req, res) => {
 }
 
 const remove = async (req, res) => {
-    const { id } = parseInt(req.params);
+    const id = parseInt(req.params.id);
+
     try {
         const deleteUser = await userService.deleteUser(id);
         res.status(200).json({
-            massage: `user ${deleteUser} was deleted`
+            massage: `user ${deleteUser + 1} was deleted`
         })
         
     }
@@ -80,7 +81,6 @@ const addUser = async (req, res) => {
             const { user } = req.body;
 
             const created = await userService.addUser(user);
-            console.log(created);
             res.status(200).json({
                 massage: `user created successfully! user id is: ${created}`
             })

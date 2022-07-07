@@ -99,86 +99,6 @@
         {
             "id": 2,
             "details": {
-                "firstName": "Rachel",
-                "lastName": "Keller",
-                "address": {
-                    "city": "jerusalem",
-                    "street": "ramon",
-                    "number": "5"
-                },
-                "phone": "0558963214",
-                "email": "rk@gmail.com",
-                "password": "5678",
-                "hight": "1.75",
-                "weight": [
-                    "72",
-                    "71.5",
-                    "72.1",
-                    "71.1"
-                ]
-            },
-            "diary": [
-                {
-                    "date": "2022-06-05",
-                    "breakfast": [
-                        "tost"
-                    ],
-                    "lunch": [
-                        "potato"
-                    ],
-                    "dinner": [],
-                    "snack": []
-                },
-                {
-                    "date": "2022-06-28",
-                    "breakfast": [
-                        "cracker",
-                        "cheese"
-                    ],
-                    "lunch": [
-                        "potato",
-                        "meat"
-                    ],
-                    "dinner": [
-                        "chocolate milk",
-                        "bread"
-                    ],
-                    "snack": [
-                        "apple"
-                    ]
-                },
-                {
-                    "date": "2022-06-29",
-                    "breakfast": [
-                        "cracker",
-                        "cheese"
-                    ],
-                    "lunch": [
-                        "potato",
-                        "meat"
-                    ],
-                    "dinner": [
-                        "chocolate milk",
-                        "bread"
-                    ],
-                    "snack": [
-                        "apple"
-                    ]
-                },
-                {
-                    "date": "2022-07-03",
-                    "breakfast": [],
-                    "lunch": [],
-                    "dinner": [],
-                    "snack": [
-                        "magnum"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 3,
-            "details": {
                 "firstName": "Shira",
                 "lastName": "Avitan",
                 "address": {
@@ -255,7 +175,7 @@
             ]
         },
         {
-            "id": 4,
+            "id": 3,
             "details": {
                 "firstName": "Nomi",
                 "lastName": "Meller",
@@ -273,6 +193,86 @@
                     "71.5",
                     "72.1",
                     "71.1"
+                ]
+            },
+            "diary": [
+                {
+                    "date": "2022-06-05",
+                    "breakfast": [
+                        "tost"
+                    ],
+                    "lunch": [
+                        "potato"
+                    ],
+                    "dinner": [],
+                    "snack": []
+                },
+                {
+                    "date": "2022-06-28",
+                    "breakfast": [
+                        "cracker",
+                        "cheese"
+                    ],
+                    "lunch": [
+                        "potato",
+                        "meat"
+                    ],
+                    "dinner": [
+                        "chocolate milk",
+                        "bread"
+                    ],
+                    "snack": [
+                        "apple"
+                    ]
+                },
+                {
+                    "date": "2022-06-29",
+                    "breakfast": [
+                        "cracker",
+                        "cheese"
+                    ],
+                    "lunch": [
+                        "potato",
+                        "meat"
+                    ],
+                    "dinner": [
+                        "chocolate milk",
+                        "bread"
+                    ],
+                    "snack": [
+                        "apple"
+                    ]
+                },
+                {
+                    "date": "2022-07-03",
+                    "breakfast": [],
+                    "lunch": [],
+                    "dinner": [],
+                    "snack": [
+                        "magnum"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "details": {
+                "firstName": "Elisheva",
+                "lastName": "Kantore",
+                "address": {
+                    "city": "Modein Elit",
+                    "street": "Meshech Chochma",
+                    "number": "20"
+                },
+                "phone": "0558963214",
+                "email": "ek@gmail.com",
+                "password": "5678",
+                "hight": "1.60",
+                "weight": [
+                    "50",
+                    "51",
+                    "52",
+                    "53"
                 ]
             },
             "diary": [
