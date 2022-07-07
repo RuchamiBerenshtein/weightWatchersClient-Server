@@ -23,14 +23,15 @@ const getById = async (id) => {
 }
 
 const addUser = async (user) => {
+    
     users.push(user);
     saveToFile();
     return 'create';
 }
 
 const deleteUser = async (id) => {
-    const index = await users.findIndex(user => user.id === parseInt(id));
-    await users.splice(index, 1);
+    const index = await users.indexOf(user => user.id === id);
+    users.splice(index, 1);
     saveToFile();
     return 'delete';
 }
@@ -44,7 +45,15 @@ const updateUser = async (user) => {
     await saveToFile();
 }
 
-export default {
+// export default {
+//     getAll,
+//     getById,
+//     addUser,
+//     deleteUser,
+//     updateUser
+// }
+
+module.exports = {
     getAll,
     getById,
     addUser,
