@@ -44,15 +44,6 @@ const updateUser = async (user) => {
     users[index] = user;
     await saveToFile();
 }
-
-// export default {
-//     getAll,
-//     getById,
-//     addUser,
-//     deleteUser,
-//     updateUser
-// }
-
 module.exports = {
     getAll,
     getById,
