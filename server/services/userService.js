@@ -23,16 +23,24 @@ const getById = async (id) => {
 }
 
 const addUser = async (user) => {
-    
+    user.id = users.length;
     users.push(user);
     saveToFile();
-    return 'create';
+    return user.id;
 }
 
 const deleteUser = async (id) => {
     const index = await users.indexOf(user => user.id === id);
+    if (index === -1)
+        return;
+
     users.splice(index, 1);
     saveToFile();
+
+    for (let i = index; i < users.length; i++) {
+        users[i].id = users[i].id - 1;
+    }
+
     return 'delete';
 }
 

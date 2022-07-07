@@ -4,9 +4,10 @@ const userService = require('../services/userService');
 const getAll = async (req, res) => {
     try {
         const users = await userService.getAll();
-        res.status(200).json({
-            users
-        })
+        // res.status(200).json({
+        //     users
+        // })
+        res.send(users);
     }
     catch (err) {
         res.status(500).json({
@@ -57,10 +58,13 @@ const updateUser = async (req, res) => {
 }
 
 const remove = async (req, res) => {
-    const {id} = parseInt(req.params);
+    const { id } = parseInt(req.params);
     try {
-        const deleteUser = await userService.deleteUser(id)
-        res.send(deleteUser)
+        const deleteUser = await userService.deleteUser(id);
+        res.status(200).json({
+            massage: `user ${deleteUser} was deleted`
+        })
+        
     }
     catch (err) {
         res.status(500).json({
@@ -69,15 +73,17 @@ const remove = async (req, res) => {
     }
 }
 
-const addUser = async function (req, res) {
+const addUser = async (req, res) => {
 
     try {
         if (req.body.user) {
             const { user } = req.body;
-        
+
             const created = await userService.addUser(user);
             console.log(created);
-            res.send(created);
+            res.status(200).json({
+                massage: `user created successfully! user id is: ${created}`
+            })
         }
         else {
             res.status(400).json({
