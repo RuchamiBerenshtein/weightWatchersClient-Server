@@ -1,4 +1,4 @@
-const userService = require('../services/userService');
+const userService = require('../services/userService').default;
 
 const getAll = async (req, res) => {
     try {
@@ -13,12 +13,10 @@ const getAll = async (req, res) => {
         })
     }
 };
-
-search = async function (req, res) {
+const search = async (req, res) => {
 }
-
-getUserByID = async function (req, res) {
-    const id = req.params.id;
+const getUserByID = async (req, res) => {
+    const id = parseInt(req.params.id);
     try {
         const user = await userService.getById(id);
         res.status(200).json({
@@ -31,14 +29,31 @@ getUserByID = async function (req, res) {
         })
     }
 }
+const updateUser = async (req, res) => {
+    const id = parseInt(req.params.id);
+    const { upUser } = req.body;
 
-updateUser = async function (req, res) {
+    if (id !== upUser.id) {
+        res.status(400).json({
+            massage: 'there is not a same user'
+        });
+    }
+
+    const existingUser = userService.getById(id);
+    if (!existingUser) {
+        res.status(400).json({
+            massage: 'user is not find'
+        })
+    }
+
+    userService.updateUser(upUser);
+    res.status(200).json({
+        massage: 'user is updated'
+    })
 }
-
-remove = async function (req, res) {
+const remove = async (req, res) => {
 }
-
-addUser = async function (req, res) {
+const addUser = async (req, res) => {
 }
 
 
