@@ -11,4 +11,4 @@ const login = async (email) => {
     return await user;
 }
 
-module.exports = login;
+module.exports ={login} 

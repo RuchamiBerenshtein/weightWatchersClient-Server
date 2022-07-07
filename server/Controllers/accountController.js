@@ -12,7 +12,9 @@ module.exports.addAccount = async function (req, res) {
         res.send(user);
     }
     catch (error) {
-        next(error)
+        res.status(500).json({
+            massage: `${error}`
+        })
     }
 }
 
