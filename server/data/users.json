@@ -1,50 +1,6 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "details": {
-        "firstName": "Mira",
-        "lastName": "Levi",
-        "address": {
-          "city": "jerusalem",
-          "street": "malhachi",
-          "number": "9"
-        },
-        "phone": "0521369874",
-        "email": "ml@gmail.com",
-        "hight": "1.70",
-        "weight": ["72", "71.5", "72.1", "71.8"]
-      },
-      "diary": [
+    "users": [
         {
-<<<<<<< HEAD
-          "date": "2022-06-27",
-          "breakfast": ["milk", "cereal"],
-          "lunch": ["rice", "chicken"],
-          "dinner": ["tomato", "cucumber"],
-          "snack": ["toffee", "bamba"]
-        },
-        {
-          "date": "2022-06-28",
-          "breakfast": ["milk", "cereal"],
-          "lunch": ["rice", "chicken"],
-          "dinner": ["tomato", "apple"],
-          "snack": ["toffee", "pie"]
-        },
-        {
-          "date": "2022-06-29",
-          "breakfast": ["milk", "cereal"],
-          "lunch": ["pasta", "chicken"],
-          "dinner": ["tomato", "cucumber"],
-          "snack": ["toffee"]
-        },
-        {
-          "date": "2022-06-30",
-          "breakfast": ["korenflaks"],
-          "lunch": ["meat"],
-          "dinner": ["coffee"],
-          "snack": ["pie", "chips"]
-=======
             "id": 1,
             "details": {
                 "firstName": "Mira",
@@ -56,18 +12,20 @@
                 },
                 "phone": "0521369874",
                 "email": "ml@gmail.com",
-                "password": "1234",
                 "hight": "1.70",
-                "weight": [
-                    "72",
-                    "71.5",
-                    "72.1",
-                    "71.8"
+                "meetings": [
+                    {
+                        "id": 1,
+                        "weight": "73"
+                    },
+                    {
+                        "id": 2,
+                        "weight": "65"
+                    }
                 ]
             },
             "diary": [
                 {
-                    "id": 1,
                     "date": "2022-06-27",
                     "breakfast": [
                         "milk",
@@ -82,11 +40,48 @@
                         "cucumber"
                     ],
                     "snack": [
+                        "toffee",
+                        "bamba"
+                    ]
+                },
+                {
+                    "date": "2022-06-28",
+                    "breakfast": [
+                        "milk",
+                        "cereal"
+                    ],
+                    "lunch": [
+                        "rice",
+                        "chicken"
+                    ],
+                    "dinner": [
+                        "tomato",
+                        "apple"
+                    ],
+                    "snack": [
+                        "toffee",
+                        "pie"
+                    ]
+                },
+                {
+                    "date": "2022-06-29",
+                    "breakfast": [
+                        "milk",
+                        "cereal"
+                    ],
+                    "lunch": [
+                        "pasta",
+                        "chicken"
+                    ],
+                    "dinner": [
+                        "tomato",
+                        "cucumber"
+                    ],
+                    "snack": [
                         "toffee"
                     ]
                 },
                 {
-                    "id": 2,
                     "date": "2022-06-30",
                     "breakfast": [
                         "korenflaks"
@@ -107,6 +102,89 @@
         {
             "id": 2,
             "details": {
+                "firstName": "Rachel",
+                "lastName": "Keller",
+                "address": {
+                    "city": "jerusalem",
+                    "street": "ramon",
+                    "number": "5"
+                },
+                "phone": "0558963214",
+                "email": "rk@gmail.com",
+                "hight": "1.75",
+                "meetings": [
+                    {
+                        "id": 1,
+                        "weight": "73"
+                    },
+                    {
+                        "id": 2,
+                        "weight": "50"
+                    }
+                ]
+            },
+            "diary": [
+                {
+                    "date": "2022-06-05",
+                    "breakfast": [
+                        "tost"
+                    ],
+                    "lunch": [
+                        "potato"
+                    ],
+                    "dinner": [],
+                    "snack": []
+                },
+                {
+                    "date": "2022-06-28",
+                    "breakfast": [
+                        "cracker",
+                        "cheese"
+                    ],
+                    "lunch": [
+                        "potato",
+                        "meat"
+                    ],
+                    "dinner": [
+                        "chocolate milk",
+                        "bread"
+                    ],
+                    "snack": [
+                        "apple"
+                    ]
+                },
+                {
+                    "date": "2022-06-29",
+                    "breakfast": [
+                        "cracker",
+                        "cheese"
+                    ],
+                    "lunch": [
+                        "potato",
+                        "meat"
+                    ],
+                    "dinner": [
+                        "chocolate milk",
+                        "bread"
+                    ],
+                    "snack": [
+                        "apple"
+                    ]
+                },
+                {
+                    "date": "2022-07-03",
+                    "breakfast": [],
+                    "lunch": [],
+                    "dinner": [],
+                    "snack": [
+                        "magnum"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "details": {
                 "firstName": "Shira",
                 "lastName": "Avitan",
                 "address": {
@@ -116,18 +194,20 @@
                 },
                 "phone": "0536985214",
                 "email": "sa@gmail.com",
-                "password": "1452",
                 "hight": "1.64",
-                "weight": [
-                    "72",
-                    "71.5",
-                    "72.1",
-                    "73"
+                "meetings": [
+                    {
+                        "id": 1,
+                        "weight": "73"
+                    },
+                    {
+                        "id": 2,
+                        "weight": "64"
+                    }
                 ]
             },
             "diary": [
                 {
-                    "id": 1,
                     "date": "2022-06-27",
                     "breakfast": [
                         "toast",
@@ -146,7 +226,6 @@
                     ]
                 },
                 {
-                    "id": 2,
                     "date": "2022-06-28",
                     "breakfast": [
                         "toast",
@@ -165,7 +244,6 @@
                     ]
                 },
                 {
-                    "id": 3,
                     "date": "2022-06-29",
                     "breakfast": [
                         "toast",
@@ -184,313 +262,6 @@
                     ]
                 }
             ]
-        },
-        {
-            "id": 3,
-            "details": {
-                "firstName": "Nomi",
-                "lastName": "Meller",
-                "address": {
-                    "city": "jerusalem",
-                    "street": "ramon",
-                    "number": "5"
-                },
-                "phone": "0558963214",
-                "email": "nm@gmail.com",
-                "password": "5678",
-                "hight": "1.75",
-                "weight": [
-                    "72",
-                    "71.5",
-                    "72.1",
-                    "71.1"
-                ]
-            },
-            "diary": [
-                {
-                    "id": 1,
-                    "date": "2022-06-05",
-                    "breakfast": [
-                        "tost"
-                    ],
-                    "lunch": [
-                        "potato"
-                    ],
-                    "dinner": [],
-                    "snack": []
-                },
-                {
-                    "id": 2,
-                    "date": "2022-06-28",
-                    "breakfast": [
-                        "cracker",
-                        "cheese"
-                    ],
-                    "lunch": [
-                        "potato",
-                        "meat"
-                    ],
-                    "dinner": [
-                        "chocolate milk",
-                        "bread"
-                    ],
-                    "snack": [
-                        "apple"
-                    ]
-                },
-                {
-                    "id": 3,
-                    "date": "2022-06-29",
-                    "breakfast": [
-                        "cracker",
-                        "cheese"
-                    ],
-                    "lunch": [
-                        "potato",
-                        "meat"
-                    ],
-                    "dinner": [
-                        "chocolate milk",
-                        "bread"
-                    ],
-                    "snack": [
-                        "apple"
-                    ]
-                },
-                {
-                    "id": 4,
-                    "date": "2022-07-03",
-                    "breakfast": [],
-                    "lunch": [],
-                    "dinner": [],
-                    "snack": [
-                        "magnum"
-                    ]
-                }
-            ]
-        },
-        {
-            "id": 4,
-            "details": {
-                "firstName": "Elisheva",
-                "lastName": "Berenstain",
-                "address": {
-                    "city": "Modein Elit",
-                    "street": "Meshech Chochma",
-                    "number": "20"
-                },
-                "phone": "0558963214",
-                "email": "eb@gmail.com",
-                "password": "5678",
-                "hight": "1.60",
-                "weight": [
-                    "50",
-                    "51",
-                    "52",
-                    "53"
-                ]
-            },
-            "diary": [
-                {
-                    "id": 1,
-                    "date": "2022-06-05",
-                    "breakfast": [
-                        "tost"
-                    ],
-                    "lunch": [
-                        "potato"
-                    ],
-                    "dinner": [],
-                    "snack": []
-                },
-                {
-                    "id": 2,
-                    "date": "2022-06-28",
-                    "breakfast": [
-                        "cracker",
-                        "cheese"
-                    ],
-                    "lunch": [
-                        "potato",
-                        "meat"
-                    ],
-                    "dinner": [
-                        "chocolate milk",
-                        "bread"
-                    ],
-                    "snack": [
-                        "apple"
-                    ]
-                },
-                {
-                    "id": 3,
-                    "date": "2022-06-29",
-                    "breakfast": [
-                        "cracker",
-                        "cheese"
-                    ],
-                    "lunch": [
-                        "potato",
-                        "meat"
-                    ],
-                    "dinner": [
-                        "chocolate milk",
-                        "bread"
-                    ],
-                    "snack": [
-                        "apple"
-                    ]
-                },
-                {
-                    "id": 4,
-                    "date": "2022-07-03",
-                    "breakfast": [],
-                    "lunch": [],
-                    "dinner": [],
-                    "snack": [
-                        "magnum"
-                    ]
-                }
-            ]
->>>>>>> 75ef0057cbd91a99733fbf83e23e3cd1fff04371
         }
-      ],
-       "meeting":[{
-        "id":1,
-        "weight":"69"
-       },
-       {
-        "id":2,
-        "weight":"64"
-       },
-       {
-        "id":3,
-        "weight":"73"
-       }]
-    },
-    {
-      "id": 2,
-      "details": {
-        "firstName": "Rachel",
-        "lastName": "Keller",
-        "address": {
-          "city": "jerusalem",
-          "street": "ramon",
-          "number": "5"
-        },
-        "phone": "0558963214",
-        "email": "rk@gmail.com",
-        "hight": "1.75",
-        "weight": ["72", "71.5", "72.1", "71.1"]
-      },
-      "diary": [
-        {
-          "date": "2022-06-05",
-          "breakfast": ["tost"],
-          "lunch": ["potato"],
-          "dinner": [],
-          "snack": []
-        },
-        {
-          "date": "2022-06-28",
-          "breakfast": ["cracker", "cheese"],
-          "lunch": ["potato", "meat"],
-          "dinner": ["chocolate milk", "bread"],
-          "snack": ["apple"]
-        },
-        {
-          "date": "2022-06-29",
-          "breakfast": ["cracker", "cheese"],
-          "lunch": ["potato", "meat"],
-          "dinner": ["chocolate milk", "bread"],
-          "snack": ["apple"]
-        },
-        {
-          "date": "2022-07-03",
-          "breakfast": [],
-          "lunch": [],
-          "dinner": [],
-          "snack": ["magnum"]
-        }
-      ],
-    "meeting":[{
-      "id":1,
-      "weight":"69"
-     },
-     {
-      "id":2,
-      "weight":"64"
-     },
-     {
-      "id":3,
-      "weight":"73"
-     }]
-    },
-    {
-      "id": 3,
-      "details": {
-        "firstName": "Shira",
-        "lastName": "Avitan",
-        "address": {
-          "city": "jerusalem",
-          "street": "arimon",
-          "number": "5"
-        },
-        "phone": "0536985214",
-        "email": "sa@gmail.com",
-        "hight": "1.64",
-        "weight": ["72", "71.5", "72.1", "73"]
-      },
-      "diary": [
-        {
-          "date": "2022-06-27",
-          "breakfast": ["toast", "coffee"],
-          "lunch": ["fish", "couscous"],
-          "dinner": ["salad", "cheese"],
-          "snack": ["juice"]
-        },
-        {
-          "date": "2022-06-28",
-          "breakfast": ["toast", "coffee"],
-          "lunch": ["fish", "couscous"],
-          "dinner": ["salad", "cheese"],
-          "snack": ["juice"]
-        },
-        {
-          "date": "2022-06-29",
-          "breakfast": ["toast", "coffee"],
-          "lunch": ["fish", "couscous"],
-          "dinner": ["salad", "cheese"],
-          "snack": ["juice"]
-        }
-      ],"meeting":[{
-        "id":1,
-        "weight":"69"
-       },
-       {
-        "id":2,
-        "weight":"64"
-       },
-       {
-        "id":3,
-        "weight":"73"
-       }]
-    }
-  ],
-  "manager": [
-    {
-      "id": 1,
-      "details": {
-        "firstName": "Mira",
-        "lastName": "Levi",
-        "address": {
-          "city": "jerusalem",
-          "street": "malhachi",
-          "number": "9"
-        },
-        "phone": "0521369874",
-        "email": "ml@gmail.com"
-      }
-    }
-  ]
+    ]
 }
