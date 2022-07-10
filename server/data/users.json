@@ -23,6 +23,7 @@
             },
             "diary": [
                 {
+                    "id": 1,
                     "date": "2022-06-27",
                     "breakfast": [
                         "milk",
@@ -37,48 +38,11 @@
                         "cucumber"
                     ],
                     "snack": [
-                        "toffee",
-                        "bamba"
-                    ]
-                },
-                {
-                    "date": "2022-06-28",
-                    "breakfast": [
-                        "milk",
-                        "cereal"
-                    ],
-                    "lunch": [
-                        "rice",
-                        "chicken"
-                    ],
-                    "dinner": [
-                        "tomato",
-                        "apple"
-                    ],
-                    "snack": [
-                        "toffee",
-                        "pie"
-                    ]
-                },
-                {
-                    "date": "2022-06-29",
-                    "breakfast": [
-                        "milk",
-                        "cereal"
-                    ],
-                    "lunch": [
-                        "pasta",
-                        "chicken"
-                    ],
-                    "dinner": [
-                        "tomato",
-                        "cucumber"
-                    ],
-                    "snack": [
                         "toffee"
                     ]
                 },
                 {
+                    "id": 2,
                     "date": "2022-06-30",
                     "breakfast": [
                         "korenflaks"
@@ -119,6 +83,7 @@
             },
             "diary": [
                 {
+                    "id": 1,
                     "date": "2022-06-27",
                     "breakfast": [
                         "toast",
@@ -137,6 +102,7 @@
                     ]
                 },
                 {
+                    "id": 2,
                     "date": "2022-06-28",
                     "breakfast": [
                         "toast",
@@ -155,6 +121,7 @@
                     ]
                 },
                 {
+                    "id": 3,
                     "date": "2022-06-29",
                     "breakfast": [
                         "toast",
@@ -197,6 +164,7 @@
             },
             "diary": [
                 {
+                    "id": 1,
                     "date": "2022-06-05",
                     "breakfast": [
                         "tost"
@@ -208,6 +176,7 @@
                     "snack": []
                 },
                 {
+                    "id": 2,
                     "date": "2022-06-28",
                     "breakfast": [
                         "cracker",
@@ -226,6 +195,7 @@
                     ]
                 },
                 {
+                    "id": 3,
                     "date": "2022-06-29",
                     "breakfast": [
                         "cracker",
@@ -244,6 +214,7 @@
                     ]
                 },
                 {
+                    "id": 4,
                     "date": "2022-07-03",
                     "breakfast": [],
                     "lunch": [],
@@ -277,6 +248,7 @@
             },
             "diary": [
                 {
+                    "id": 1,
                     "date": "2022-06-05",
                     "breakfast": [
                         "tost"
@@ -288,6 +260,7 @@
                     "snack": []
                 },
                 {
+                    "id": 2,
                     "date": "2022-06-28",
                     "breakfast": [
                         "cracker",
@@ -306,6 +279,7 @@
                     ]
                 },
                 {
+                    "id": 3,
                     "date": "2022-06-29",
                     "breakfast": [
                         "cracker",
@@ -324,6 +298,7 @@
                     ]
                 },
                 {
+                    "id": 4,
                     "date": "2022-07-03",
                     "breakfast": [],
                     "lunch": [],

@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { format } = require('path');
 
 const data = fs.readFileSync('data/users.json');
 const users = JSON.parse(data).users;
@@ -16,15 +15,14 @@ const getAll = async () => {
 }
 
 const getById = async (id) => {
-    id = parseInt(id)
     const user = users.find(user => user.id === id);
-    return await user;
+    return user;
 }
 
 const addUser = async (user) => {
     user.id = users.length + 1;
     users.push(user);
-    saveToFile();
+    await saveToFile();
     return user.id;
 }
 
