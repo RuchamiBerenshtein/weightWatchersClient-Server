@@ -258,14 +258,14 @@
             "id": 4,
             "details": {
                 "firstName": "Elisheva",
-                "lastName": "Kantore",
+                "lastName": "Berenstain",
                 "address": {
                     "city": "Modein Elit",
                     "street": "Meshech Chochma",
                     "number": "20"
                 },
                 "phone": "0558963214",
-                "email": "ek@gmail.com",
+                "email": "eb@gmail.com",
                 "password": "5678",
                 "hight": "1.60",
                 "weight": [

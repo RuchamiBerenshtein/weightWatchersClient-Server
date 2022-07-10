@@ -30,9 +30,9 @@ const addUser = async (user) => {
 
 const deleteUser = async (id) => {
 
-const index = users.map(user => user.id).indexOf(id);
+    const index = users.map(user => user.id).indexOf(id);
 
-    if (index === -1){
+    if (index === -1) {
         return;
     }
 
@@ -48,7 +48,8 @@ const index = users.map(user => user.id).indexOf(id);
 }
 
 const updateUser = async (user) => {
-    const index = users.indexOf(u => u.id === user.id);
+    const index = users.map(user => user.id).indexOf(user.id);
+
     if (index === -1)
         return;
 
@@ -56,10 +57,47 @@ const updateUser = async (user) => {
     await saveToFile();
 }
 
+const searchByFreeText = async (text) => {
+
+    const filterUsers = [];
+
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].details.firstName.includes(text) ||
+            users[i].details.lastName.includes(text) ||
+            users[i].details.email.includes(text) ||
+            users[i].details.phone.includes(text)) {
+            filterUsers.push(users[i]);
+        }
+    }
+    // await users.filter(user => user.details.firstName.includes(text) ||
+    //     updateUser.details.lastName.includes(text) ||
+    //     updateUser.details.email.includes(text) ||
+    //     updateUser.details.phone.includes(text));
+    return filterUsers;
+}
+
+const searchBMI = async (minBMI, maxBMI) => {
+    const filterUsers = [];
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].details.weight[users[i].details.weight.length - 1] / users[i].details.hight ** 2 >= minBMI &&
+            users[i].details.weight[users[i].details.weight.length - 1] / users[i].details.hight ** 2 <= maxBMI) {
+            filterUsers.push(users[i]);
+        }
+    }
+    return filterUsers;
+    // return await users.filter(user =>
+    //     user.details.weight[user.details.weight.length - 1] / user.hight ** 2 >= minBMI &&
+    //     user.details.weight[user.details.weight.length - 1] / user.hight ** 2 <= maxBMI
+    // );
+}
+
 module.exports = {
     getAll,
     getById,
     addUser,
     deleteUser,
-    updateUser
+    updateUser,
+    searchByFreeText,
+    searchBMI,
+
 }
