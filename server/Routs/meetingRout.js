@@ -8,7 +8,7 @@ router.get('/', meetingController.getAllMeeting);
 
 router.get('/:id', meetingController.getMeetingById);
 
-router.post('/', meetingController.adMeeting);
+router.post('/', meetingController.addMeeting);
 
 router.put('/:id', meetingController.updateMeeting);
 
