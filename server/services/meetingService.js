@@ -46,9 +46,18 @@ const addMeeting = async (weights) => {
     await saveToUsersFile();
     await saveToMeetingFile();
 }
+const updateMeeting  = async (meeting) => {
+    const index = meetings.indexOf(u => u.id === meeting.id);
+    if (index === -1)
+        return;
+
+    meetings[index] = meeting;
+    await saveToMeetingFile();
+}
 
 module.exports = {
     getAll,
     getMeetingById,
-    addMeeting
+    addMeeting,
+    updateMeeting
 }

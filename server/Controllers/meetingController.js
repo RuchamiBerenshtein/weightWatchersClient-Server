@@ -49,8 +49,6 @@ module.exports.addMeeting = async function (req, res) {
 
 module.exports.updateMeeting = async function (req, res) {
     
-
-    
 }
 
 module.exports.deleteMeeting = async function (req, res) {
