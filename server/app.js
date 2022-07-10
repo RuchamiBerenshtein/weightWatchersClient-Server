@@ -12,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
-
 app.use('/User', user);
 app.use('/Diary', diary);
 app.use('/Account', account);

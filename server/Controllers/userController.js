@@ -17,6 +17,29 @@ const getAll = async (req, res) => {
 };
 
 const search = async (req, res) => {
+    try{
+        if (req.query.minBMI) {
+            const { minBMI, maxBMI } = req.query;
+            const filterUsers = await userService.searchBMI(minBMI, maxBMI);
+            res.status(200).json({
+                filterUsers
+            })
+            
+        }
+        else {
+            const { text } = req.query;
+            const filterUsers = await userService.searchByFreeText(text);
+            res.status(200).json({
+                filterUsers
+            })
+        }
+        
+    }
+    catch {
+        res.status(500).json({
+            massage: 'filter users was filed'
+        })
+    }
 }
 
 const getUserByID = async (req, res) => {
@@ -36,9 +59,9 @@ const getUserByID = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { upUser } = req.body;
+    const { user } = req.body;
 
-    if (id !== upUser.id) {
+    if (id !== user.id) {
         res.status(400).json({
             massage: 'there is not a same user'
         });
@@ -51,7 +74,7 @@ const updateUser = async (req, res) => {
         })
     }
 
-    userService.updateUser(upUser);
+    userService.updateUser(user);
     res.status(200).json({
         massage: 'user is updated'
     })
@@ -65,7 +88,7 @@ const remove = async (req, res) => {
         res.status(200).json({
             massage: `user ${deleteUser + 1} was deleted`
         })
-        
+
     }
     catch (err) {
         res.status(500).json({

@@ -91,7 +91,6 @@ class Manager {
         this.inputs.forEach(weight => {
             this.users[i].details.weight.push(weight.value);
 
-debugger
             //הקריאה הזו לא עובדת היא מחזירה 404
             fetch(`http://localhost:3000/users/${this.users[i].id}/details`, {
                 method: `PATCH`,
