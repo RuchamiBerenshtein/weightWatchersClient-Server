@@ -55,6 +55,24 @@ const updateUser = async (user) => {
     await saveToFile();
 }
 
+const searchBMI = async (minBMI, maxBMI) => {
+    const filterUsers = [];
+
+    console.log(minBMI, maxBMI);
+    for (let i = 0; i < users.length; i++) {
+        const BMI = users[i].details.meetings[users[i].details.meetings.length - 1].weight / users[i].details.hight ** 2;
+        if (BMI >= minBMI && BMI <= maxBMI) {
+            filterUsers.push(users[i]);
+        }
+        console.log(BMI);
+    }
+    return filterUsers;
+    // return await users.filter(user =>
+    //     user.details.weight[user.details.weight.length - 1] / user.hight ** 2 >= minBMI &&
+    //     user.details.weight[user.details.weight.length - 1] / user.hight ** 2 <= maxBMI
+    // );
+}
+
 const searchByFreeText = async (text) => {
 
     const filterUsers = [];
@@ -72,21 +90,6 @@ const searchByFreeText = async (text) => {
     //     updateUser.details.email.includes(text) ||
     //     updateUser.details.phone.includes(text));
     return filterUsers;
-}
-
-const searchBMI = async (minBMI, maxBMI) => {
-    const filterUsers = [];
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].details.weight[users[i].details.weight.length - 1] / users[i].details.hight ** 2 >= minBMI &&
-            users[i].details.weight[users[i].details.weight.length - 1] / users[i].details.hight ** 2 <= maxBMI) {
-            filterUsers.push(users[i]);
-        }
-    }
-    return filterUsers;
-    // return await users.filter(user =>
-    //     user.details.weight[user.details.weight.length - 1] / user.hight ** 2 >= minBMI &&
-    //     user.details.weight[user.details.weight.length - 1] / user.hight ** 2 <= maxBMI
-    // );
 }
 
 module.exports = {
