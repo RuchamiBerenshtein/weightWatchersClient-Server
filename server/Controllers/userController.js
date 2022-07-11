@@ -1,4 +1,3 @@
-const { response } = require('express');
 const userService = require('../services/userService');
 
 const getAll = async (req, res) => {
@@ -44,6 +43,7 @@ const search = async (req, res) => {
 
 const getUserByID = async (req, res) => {
     const id = parseInt(req.params.id);
+
     try {
         const user = await userService.getById(id);
         res.status(200).json({
@@ -58,8 +58,11 @@ const getUserByID = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
+    console.log(req.params);
     const id = parseInt(req.params.id);
+    console.log(id);
     const { user } = req.body;
+    console.log(user);
 
     if (id !== user.id) {
         res.status(400).json({
