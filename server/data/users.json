@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-{"users":[{"id":1,"details":{"firstName":"Mira","lastName":"Levi","address":{"city":"jerusalem","street":"malhachi","number":"9"},"phone":"0521369874","email":"ml@gmail.com","hight":"1.70","meetings":[{"id":1,"weight":"73"},{"id":2,"weight":"65"}]},"diary":[{"date":"2022-06-27","breakfast":["milk","cereal"],"lunch":["rice","chicken"],"dinner":["tomato","cucumber"],"snack":["toffee","bamba"]},{"date":"2022-06-28","breakfast":["milk","cereal"],"lunch":["rice","chicken"],"dinner":["tomato","apple"],"snack":["toffee","pie"]},{"date":"2022-06-29","breakfast":["milk","cereal"],"lunch":["pasta","chicken"],"dinner":["tomato","cucumber"],"snack":["toffee"]},{"date":"2022-06-30","breakfast":["korenflaks"],"lunch":["meat"],"dinner":["coffee"],"snack":["pie","chips"]}]},{"id":3,"details":{"firstName":"Shira","lastName":"Avitan","address":{"city":"jerusalem","street":"arimon","number":"5"},"phone":"0536985214","email":"sa@gmail.com","hight":"1.64","meetings":[{"id":1,"weight":"73"},{"id":2,"weight":"64"}]},"diary":[{"date":"2022-06-27","breakfast":["toast","coffee"],"lunch":["fish","couscous"],"dinner":["salad","cheese"],"snack":["juice"]},{"date":"2022-06-28","breakfast":["toast","coffee"],"lunch":["fish","couscous"],"dinner":["salad","cheese"],"snack":["juice"]},{"date":"2022-06-29","breakfast":["toast","coffee"],"lunch":["fish","couscous"],"dinner":["salad","cheese"],"snack":["juice"]}]},{"details":{"firstName":"Rachel","lastName":"Keller","address":{"city":"jerusalem","street":"ramon","number":"5"},"phone":"0558963214","email":"rk@gmail.com","hight":"1.75","meetings":[{"id":1,"weight":"73"},{"id":2,"weight":"50"}]},"diary":[{"date":"2022-06-05","breakfast":["tost"],"lunch":["potato"],"dinner":[],"snack":[]},{"date":"2022-06-28","breakfast":["cracker","cheese"],"lunch":["potato","meat"],"dinner":["chocolate milk","bread"],"snack":["apple"]},{"date":"2022-06-29","breakfast":["cracker","cheese"],"lunch":["potato","meat"],"dinner":["chocolate milk","bread"],"snack":["apple"]},{"date":"2022-07-03","breakfast":[],"lunch":[],"dinner":[],"snack":["magnum"]}],"id":3}]}
-=======
 {
     "users": [
         {
@@ -268,4 +265,3 @@
         }
     ]
 }
->>>>>>> 4969193bc8f68138fe59db115e6a9ebe9449f1ed
