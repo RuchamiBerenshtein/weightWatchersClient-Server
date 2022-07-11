@@ -1,7 +1,9 @@
 const fs = require('fs');
-const meetingsData = fs.readFileSync('data/meeting.json');
+
 const usersData = fs.readFileSync('data/users.json');
 const users = JSON.parse(usersData).users;
+
+const meetingsData = fs.readFileSync('data/meeting.json');
 const meetings = JSON.parse(meetingsData).meetings;
 
 
@@ -28,36 +30,73 @@ const getMeetingById = async (id) => {
     return await user;
 }
 
-const addMeeting = async (weights) => {
+const addMeeting = async (weights, date) => {
     let meeting = {
-        id : meetings.length + 1,
-        date : new Date()
+        "id": meetings.length + 1,
+        "date": date
     }
     meetings.push(meeting);
-   console.log(meetings);
 
     let i = 0;
-    weights.forEach( weight => {
-        
-        users[i].details.weight.push(weight);
-        users[i].meeting.push({"id": meeting.id, "weight": weight.value});
+    weights.forEach(weight => {
+        users[i].details.meetings.push({ "id": meeting.id, "weight": weight });
         i++;
     })
+
     await saveToUsersFile();
     await saveToMeetingFile();
+
+    return meeting;
 }
-const updateMeeting  = async (meeting) => {
-    const index = meetings.indexOf(u => u.id === meeting.id);
+
+const updateMeeting = async (meeting, weights) => {
+    const index = meetings.map(meet => meet.id).indexOf(meeting.id);
+
     if (index === -1)
         return;
 
     meetings[index] = meeting;
+
+    for (let i = 0; i < users.length; i++) {
+        const index = users[i].details.meetings.map(meet => meet.id).indexOf(meeting.id);
+        users[i].details.meetings[index].weight = weights[i];
+    }
     await saveToMeetingFile();
+    await saveToUsersFile();
+}
+
+const deleteMeeting = async (id) => {    
+    const index = meetings.map(meet => meet.id).indexOf(id);
+    
+    if (index === -1) {
+        return;
+    }
+    
+    meetings.splice(index, 1);
+
+    for (let i = index; i < meetings.length; i++) {
+        meetings[i].id -= 1;
+    }
+
+    for (let i = 0; i < users.length; i++) {
+        const index = users[i].details.meetings.map(meet => meet.id).indexOf(id);
+        users[i].details.meetings.splice(index, 1);
+
+        for (let j = index; j < users[i].details.meetings.length; j++) {
+            users[i].details.meetings[j].id -= 1;
+        }
+    }
+    
+    await saveToMeetingFile();
+    await saveToUsersFile();
+    
+    return index;
 }
 
 module.exports = {
     getAll,
     getMeetingById,
     addMeeting,
-    updateMeeting
+    updateMeeting,
+    deleteMeeting
 }
