@@ -1,143 +1,297 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0.0",
-        "title": "Weight Watchers",
-        "description": "My User Project Application API",
-        "license": {
-            "name": "MIT",
-            "url": "https://opensource.org/licenses/MIT"
-        }
-    },
-    "host": "localhost:3000",
-    "basePath": "/",
-    "tags": [
-        {
-            "name": "Users",
-            "description": "API for users in the system"
-        }
-    ],
-    "schemes": [
-        "http"
-    ],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
-    "paths": {
-        "/user": {
-            "get": {
-                "summary": "Get all the users",
-                "description": "Get all the tasks",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "array"
-                        }
-                    }
-                }
-            }
-        },
-        "/user/search": {
-            "get": {
-                "summary": "Get searching users",
-                "description": "Get by search the tasks",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "text",
-                        "schema": {
-                            "type": "text"
-                        },
-                        "description": "text for searching corrects users"
-                    },
-                    {
-                        "in": "query",
-                        "name": "minBMI",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "description": "minimum of bmi to search"
-                    },
-                    {
-                        "in": "query",
-                        "name": "maxBMI",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "description": "maximum of bmi to search"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "array"
-                        }
-                    }
-                }
-            }
-        },
-        "/user/{id}": {
-            "get": {
-                "summary": "Get user by id",
-                "description": "Get by id the tasks",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "get user by id",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/user/{uid}": {
-            "put": {
-                "summary": "update user",
-                "description": "update user the tasks",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "get user by id",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        }
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My User Project CRUD",
+    "description": "My User Project Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
     }
-}
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    },
+    {
+      "name": "Meetings",
+      "description": "API for meetings in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/user": {
+      "get": {
+        "summary": "Get all the users",
+        "description": "Get all the users",
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "summary": "Get the task",
+        "description": "Get the task",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "task id that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/user/{userId}": {
+      "delete": {
+        "summary": "Get the task",
+        "description": "Get the task",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "task id that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "summary": "add user",
+        "description": "add user to users",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created successfully",
+            "schema": {
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+    "/user/{upId}": {
+      "put": {
+        "summary": "Update the users",
+        "description": "Update the users",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "upId",
+            "in": "path",
+            "description": "user id that needs to be deleted",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "user object",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array"
+            }
+          }
+        }
+      }
+    },
+      "/meeting": {
+        "get": {
+          "summary": "Get all the meeting",
+          "description": "Get all the meeting",
+          "produces": ["application/json"],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array"
+              }
+            }
+          }
+        }
+      },
+      "/meeting/{id}": {
+        "get": {
+          "summary": "Get the meeting",
+          "description": "Get the meeting",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "meeting id that needs to be deleted",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array"
+              }
+            }
+          }
+        }
+      },
+      "/meeting/{meetingId}": {
+        "delete": {
+          "summary": "Get the meeting",
+          "description": "Get the meeting",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "meetingId",
+              "in": "path",
+              "description": "meeting id that needs to be deleted",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array"
+              }
+            }
+          }
+        }
+      },
+      "/meeting": {
+        "post": {
+          "summary": "add meeting",
+          "description": "add meeting to meetings",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "meeting object",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "meeting": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "created successfully",
+              "schema": {
+                "type": "array"
+              }
+            }
+          }
+        }
+      },
+      "/meeting/{upId}": {
+        "put": {
+          "summary": "Update the meeting",
+          "description": "Update the meeting",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "upId",
+              "in": "path",
+              "description": "meeting id that needs to be deleted",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "meeting object",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "meeting": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "array"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  
+

@@ -5,7 +5,8 @@ const user = require('./Routs/userRout');
 const diary = require('./Routs/diaryRout');
 const meeting = require('./Routs/meetingRout');
 const account = require('./Routs/accountRout');
-
+const swaggerUi = require('swagger-ui-express'),
+swaggerDocument = require('./swagger.json');
 const port = 3000;
 
 const swaggerUi = require('swagger-ui-express'),
