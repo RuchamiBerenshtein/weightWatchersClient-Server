@@ -12,7 +12,7 @@ class Manager {
 
     getAll() {
         const request = new XMLHttpRequest()
-        request.open('GET', './data/users.json');
+        request.open('GET', 'http://localhost:3000/user');
         request.send();
         request.onload = () => {
             if (request.status != 200) {
