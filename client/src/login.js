@@ -1,4 +1,4 @@
-ד
+
 function validation() {
     let user = {
         email: document.getElementById('email').value,
