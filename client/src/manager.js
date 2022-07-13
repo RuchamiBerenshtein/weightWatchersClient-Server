@@ -117,7 +117,8 @@ class Manager {
         const url = new URL(`http://localhost:3000/user/search?text=${text}`);
         try {
 
-            let response = await fetch(url)
+            let response = await fetch(url);
+            debugger
             if (response.status !== 200 || response.status === undefined)
                 alert(response.message);
 
