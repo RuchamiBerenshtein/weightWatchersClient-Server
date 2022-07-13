@@ -22,6 +22,6 @@ const validation = () => {
     }
 }
 
-function toFoodPage(){
+const toFoodPage = () => {
     location.href = "/food.html";
 }
