@@ -5,21 +5,25 @@ if (!id) {
 }
 
 let user = null;
-const postUrl = `http://localhost:3000/users/${id}`;
+const Url = `http://localhost:3000/user/`+ id;
 
 const findUser = () => {
-    const request = new XMLHttpRequest()
-    request.open('GET', './data/users.json');
-    request.send();
-    request.onload = () => {
-        if (request.status != 200) {
-            alert(`Error ${request.status}: ${request.statusText}`);
-        } else {
-            let users = JSON.parse(request.responseText).users;
-            user = users.find(u => u.id === id).details;
-            showUserDetails();
-        }
-    }
+   
+    fetch(Url)
+        .then(response => {
+            if (response.ok && response.status == 200) {
+                return response.json()
+            }})
+        .then(data => {
+            if (data != "") {
+                console.log(data, "data");
+               user= data.details;
+               showUserDetails();
+            }
+            else {
+                alert("לא נמצא משתמש בשם זה:");
+            }
+        })
 }
 
 const showUserDetails = () => {
@@ -31,28 +35,28 @@ const showUserDetails = () => {
     document.getElementById('phone').value = user.phone;
     document.getElementById('email').value = user.email;
     document.getElementById('hight').value = user.hight;
-    document.getElementById('currentWeight').value = user.weight[user.weight.length - 1];
+    document.getElementById('currentWeight').value = user.meetings[user.meetings.length - 1].weight;
     let weights = "";
-    for (let i = 0; i < user.weight.length-1; i++){
-        weights += "<br/>" + user.weight[i];
+    for (let i = 0; i < user.meetings.length-1; i++){
+        weights += "<br/>" + user.meetings[i].weight;
     }
     document.getElementById('weightHistory').innerHTML = weights;
-    document.getElementById('BMI').value = (user.weight[user.weight.length - 1] / (user.hight ** 2)).toFixed(2);
+    document.getElementById('BMI').value = (user.meetings[user.meetings.length - 1].weight / (user.hight ** 2)).toFixed(2);
 }
 
 findUser();
 
 const saveUser = () => {
-    user.firstName = document.getElementById('firstName').value;
-    user.lastName = document.getElementById('lastName').value;
-    user.address.city = document.getElementById('city').value;
-    user.address.street = document.getElementById('street').value;
-    user.address.number = document.getElementById('number').value;
-    user.phone = document.getElementById('phone').value;
-    user.email = document.getElementById('email').value;
-    user.hight = document.getElementById('hight').value;
+    user.details.firstName = document.getElementById('firstName').value;
+    user.details.lastName = document.getElementById('lastName').value;
+    user.details.address.city = document.getElementById('city').value;
+    user.details.address.street = document.getElementById('street').value;
+    user.details.address.number = document.getElementById('number').value;
+    user.details.phone = document.getElementById('phone').value;
+    user.details.email = document.getElementById('email').value;
+    user.details.hight = document.getElementById('hight').value;
 
-    fetch(postUrl, {
+    fetch(url, {
         method: `PATCH`,
         body: JSON.stringify({
             'details': user,
