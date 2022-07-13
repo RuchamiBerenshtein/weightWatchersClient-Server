@@ -8,7 +8,7 @@ module.exports.addAccount = async function (req, res) {
         let data = {
             email
         }
-        const user = await accountService.login();
+        const user = await accountService.login(data);
         res.send(user);
     }
     catch (error) {
