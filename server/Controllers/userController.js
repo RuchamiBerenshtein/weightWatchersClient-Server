@@ -27,7 +27,9 @@ const search = async (req, res) => {
         }
         else {
             const { text } = req.query;
+            console.log(text);
             const filterUsers = await userService.searchByFreeText(text);
+            console.log(filterUsers)
             res.status(200).json({
                 filterUsers
             })

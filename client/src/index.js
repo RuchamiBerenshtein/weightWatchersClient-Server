@@ -34,38 +34,25 @@ const saveMeet = () => {
     m.saveMeet();
 }
 
-function option() {
-    const e = document.getElementById("selectSearch");
-    const type = e.value;
-    alert(type)
-    filterByType(type);
+// function option() {
+//     const e = document.getElementById("selectSearch");
+//     const type = e.value;
+//     alert(type)
+//     filterByType(type);
+// }
+
+const freeText = () => {
+    document.getElementById("freeText").style.display = "block"
+    document.getElementById("BMI").style.display = "none"
 }
 
-function filterByType(type) {
-
-    if (type === "searchByFName") {
-        document.getElementById("firstName").style.display = "block"
-        document.getElementById("lastName").style.display = "none"
-        document.getElementById("BMI").style.display = "none"
-    }
-    if (type === "searchByLName") {
-        document.getElementById("lastName").style.display = "block"
-        document.getElementById("firstName").style.display = "none"
-        document.getElementById("BMI").style.display = "none"
-    }
-    if (type === "searchByBMI") {
-        document.getElementById("BMI").style.display = "block"
-        document.getElementById("firstName").style.display = "none"
-        document.getElementById("lastName").style.display = "none"
-    }
+const BMI = () => {
+    document.getElementById("freeText").style.display = "none"
+    document.getElementById("BMI").style.display = "block"
 }
 
-function searchByFName() {
-    m.searchByFName();
-}
-
-function searchByLName() {
-    m.searchByLName();
+const searchFreeText = () => {
+    m.searchByFreeText();
 }
 
 function searchByBMI() {
