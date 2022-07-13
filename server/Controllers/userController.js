@@ -3,9 +3,6 @@ const userService = require('../services/userService');
 const getAll = async (req, res) => {
     try {
         const users = await userService.getAll();
-        // res.status(200).json({
-        //     users
-        // })
         res.send(users);
     }
     catch (err) {
@@ -44,13 +41,12 @@ const search = async (req, res) => {
 }
 
 const getUserByID = async (req, res) => {
+    debugger
     const id = parseInt(req.params.id);
 
     try {
         const user = await userService.getById(id);
-        res.status(200).json({
-            user
-        })
+       res.send(user);
     }
     catch (err) {
         res.status(500).json({

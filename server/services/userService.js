@@ -15,6 +15,7 @@ const getAll = async () => {
 }
 
 const getById = async (id) => {
+    debugger
     const user = users.find(user => user.id === id);
     return user;
 }
@@ -84,10 +85,6 @@ const searchByFreeText = async (text) => {
             filterUsers.push(users[i]);
         }
     }
-    // await users.filter(user => user.details.firstName.includes(text) ||
-    //     updateUser.details.lastName.includes(text) ||
-    //     updateUser.details.email.includes(text) ||
-    //     updateUser.details.phone.includes(text));
     return filterUsers;
 }
 
