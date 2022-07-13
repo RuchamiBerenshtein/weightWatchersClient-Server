@@ -58,7 +58,6 @@ const updateUser = async (user) => {
 const searchBMI = async (minBMI, maxBMI) => {
     const filterUsers = [];
 
-    console.log(minBMI, maxBMI);
     for (let i = 0; i < users.length; i++) {
         const BMI = users[i].details.meetings[users[i].details.meetings.length - 1].weight / users[i].details.hight ** 2;
         if (BMI >= minBMI && BMI <= maxBMI) {

@@ -31,8 +31,8 @@ const addMeeting = async (req, res) => {
 
     try {
         if (req.body) {
-            const date = req.body.date;
-            const weights = req.body.weights;
+            const { date } = req.body;
+            const { weights } = req.body;
             const created = await meetingService.addMeeting(weights, date);
             res.send(created);
         }
