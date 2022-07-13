@@ -2,7 +2,7 @@ const accountService = require('../services/accountService');
 
 
 module.exports.addAccount = async function (req, res) {
-
+debugger
     try {
         const { email } = req.body;
         let data = {
