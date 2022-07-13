@@ -1,4 +1,3 @@
-
 function validation() {
     let user = {
         email: document.getElementById('email').value,
@@ -12,8 +11,13 @@ function validation() {
         body: JSON.stringify(user),
     }).then(response => response.json())
         .then(data => {
-            alert('hello to :' + JSON.stringify(data.details.firstName));
-            location.href = `/userDetails.html?id=${data.id}`;
+            alert('hello to :' + data.user.details.firstName);
+            if (data.user.details.email === 'Admin@gmail.com') {
+                location.href = '/index.html';
+            }
+            else {
+                location.href = `/userDetails.html?id=${data.user.id}`;
+            }   
         });
 }
 

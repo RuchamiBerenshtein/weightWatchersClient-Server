@@ -3,10 +3,12 @@ const jsonData = fs.readFileSync('data/users.json');
 const users = JSON.parse(jsonData).users;
 
 const login = async (email) => {
-
-    const user =await users.find(user => (user.details).email === email);
-    console.log(user);
-    return await user;
+    let user = data.users.find(user => user.details.email === email);
+    if (!user) {
+        if (data.admin.details.email == email)
+            user = data.admin;
+    }
+    return user;
 }
 
-module.exports ={login} 
+module.exports = { login } 

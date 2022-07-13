@@ -287,5 +287,18 @@
                 }
             ]
         }
-    ]
+    ],
+    "admin": {
+        "details": {
+            "firstName": "Chani",
+            "lastName": "Ziv",
+            "address": {
+                "city": "Bitar",
+                "street": "arimon",
+                "number": "5"
+            },
+            "phone": "0536985214",
+            "email": "Admin@gmail.com"
+        }
+    }
 }
