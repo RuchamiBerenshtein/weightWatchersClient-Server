@@ -8,7 +8,6 @@ const admin= data.admin;
 const login = async (email) => {
     let user = users.find(user => user.details.email === email);
     if (!user) {
-        // if (jsonData.admin.details.email === email)
             user = admin;
     }
     return user;
