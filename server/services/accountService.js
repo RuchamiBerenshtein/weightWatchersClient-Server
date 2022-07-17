@@ -1,12 +1,15 @@
 const fs = require('fs');
 const jsonData = fs.readFileSync('data/users.json');
-const users = JSON.parse(jsonData).users;
+const data = JSON.parse(jsonData);
+const users = data.users;
+const admin= data.admin;
+
 
 const login = async (email) => {
-    let user = data.users.find(user => user.details.email === email);
+    let user = users.find(user => user.details.email === email);
     if (!user) {
-        if (data.admin.details.email == email)
-            user = data.admin;
+        // if (jsonData.admin.details.email === email)
+            user = admin;
     }
     return user;
 }

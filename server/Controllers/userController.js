@@ -41,7 +41,6 @@ const search = async (req, res) => {
 }
 
 const getUserByID = async (req, res) => {
-    debugger
     const id = parseInt(req.params.id);
 
     try {
