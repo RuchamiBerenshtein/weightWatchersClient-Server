@@ -64,7 +64,6 @@ const searchBMI = async (minBMI, maxBMI) => {
         if (BMI >= minBMI && BMI <= maxBMI) {
             filterUsers.push(users[i]);
         }
-        console.log(BMI);
     }
     return filterUsers;
     // return await users.filter(user =>

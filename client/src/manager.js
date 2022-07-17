@@ -12,24 +12,26 @@ class Manager {
 
     inputs = [];
 
-    getAll() {
+    async getAll() {
+        const url = new URL('https://evening-everglades-98180.herokuapp.com/user');
 
-        const request = new XMLHttpRequest()
-        request.open('GET', 'https://evening-everglades-98180.herokuapp.com/user');
-        request.send();
-        request.onload = () => {
-            if (request.status != 200) {
-                alert(`Error ${request.status}: ${request.statusText}`);
+        try{
+            const response = await fetch(url);
+            if (response.status !== 200 || response.status === undefined)
+                alert(response.message);
 
-            } else {
-                this.users = JSON.parse(request.responseText);
-                this.displayUsers(this.users);
+            else{
+                const users = await response.json();
+                this.users = users;
+                this.displayUsers(users);
             }
+        }
+        catch (error) {
+            alert(`you have an error: ${error}`);
         }
     }
 
     displayUsers(users) {
-        console.log(users)
         const tBody = document.getElementById('users');
         tBody.innerHTML = '';
         const button = document.createElement('button');
@@ -47,7 +49,7 @@ class Manager {
             td2.appendChild(textNodeLastName);
             let td3 = tr.insertCell(2);
             const BMI = user.meetings[user.meetings.length - 1].weight / user.hight ** 2;
-            let textNodeBMI = document.createTextNode(BMI);
+            let textNodeBMI = document.createTextNode(BMI.toFixed(2));
             if (user.meetings.length > 1) {
                 if (BMI >= user.meetings[user.meetings.length - 2].weight / user.hight ** 2) {
                     tr.style.color = 'red';
@@ -87,13 +89,15 @@ class Manager {
         })
     }
 
-    saveMeet() {
+    async saveMeet() {
         let weights = [];
         this.inputs.forEach(weight => {
             weights.push(weight.value);
         })
 
-        fetch('http://localhost:3000/meeting/', {
+        const url = new URL('http://evening-everglades-98180.herokuapp.com/meeting/');
+
+        const response = await fetch(url, {
             method: `POST`,
             body: JSON.stringify({
                 'date': document.getElementById('date').value,
@@ -101,44 +105,58 @@ class Manager {
             }), headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
-        }).then((response) => {
+        })
+        
+        
             if (response.status !== 200 || response.status === undefined)
                 alert(response.message);
 
             else
-                alert(response.message);
-        })
+                alert("meeting saved successfully");
 
         this.getAll();
     }
 
     async searchByFreeText() {
         let text = document.getElementById("text").value;
-        const url = new URL(`http://localhost:3000/user/search?text=${text}`);
+        const url = new URL(`https://evening-everglades-98180.herokuapp.com/user/search?text=${text}`);
         try {
 
             let response = await fetch(url);
-            debugger
             if (response.status !== 200 || response.status === undefined)
                 alert(response.message);
 
-            else
-                this.displayUsers(response.json());
+            else{
+                const users = await response.json();
+                this.displayUsers(users.filterUsers);
+            }
         }
         catch (error) {
             alert(`you have an error: ${error}`);
         }
     }
 
-    searchByBMI() {
+    async searchByBMI() {
         let minBMI = parseFloat(document.getElementById("minBMI").value);
         let maxBMI = parseFloat(document.getElementById("maxBMI").value);
-        let filteredUser = this.users.filter(user =>
-            user.weight[user.weight.length - 1] / user.hight ** 2 >= minBMI &&
-            user.weight[user.weight.length - 1] / user.hight ** 2 <= maxBMI
-        );
-        this.displayUsers(filteredUser);
-    };
+
+        const url = new URL(`https://evening-everglades-98180.herokuapp.com/user/search?minBMI=${minBMI}&maxBMI=${maxBMI}`);
+
+        try {
+
+            let response = await fetch(url);
+            if (response.status !== 200 || response.status === undefined)
+                alert(response.message);
+
+            else{
+                const users = await response.json();
+                this.displayUsers(users.filterUsers);
+            }
+        }
+        catch (error) {
+            alert(`you have an error: ${error}`);
+        }
+    }
 }
 
 const changePage = (id) => {

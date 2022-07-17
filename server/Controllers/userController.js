@@ -3,7 +3,9 @@ const userService = require('../services/userService');
 const getAll = async (req, res) => {
     try {
         const users = await userService.getAll();
-        res.send(users);
+        res.status(500).json({
+            users
+        })
     }
     catch (err) {
         res.status(500).json({
@@ -24,9 +26,7 @@ const search = async (req, res) => {
         }
         else {
             const { text } = req.query;
-            console.log(text);
             const filterUsers = await userService.searchByFreeText(text);
-            console.log(filterUsers)
             res.status(200).json({
                 filterUsers
             })
@@ -56,11 +56,8 @@ const getUserByID = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-    console.log(req.params);
     const id = parseInt(req.params.id);
-    console.log(id);
     const { user } = req.body;
-    console.log(user);
 
     if (id !== user.id) {
         res.status(400).json({

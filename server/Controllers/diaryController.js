@@ -18,6 +18,8 @@ const getDiary = async (req, res) => {
 const addNewDay = async (req, res) => {
     const id = parseInt(req.params.id);
     const { newDay } = req.body;
+    console.log(newDay);
+    console.log(id)
 
     try {
         const dayId = await diaryService.addNewDay(id, newDay);
