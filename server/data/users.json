@@ -20,7 +20,15 @@
                     },
                     {
                         "id": 2,
-                        "weight": "65"
+                        "weight": "74"
+                    },
+                    {
+                        "id": 3,
+                        "weight": "70"
+                    },
+                    {
+                        "id": 4,
+                        "weight": "74.04"
                     }
                 ]
             },
@@ -120,6 +128,14 @@
                     {
                         "id": 2,
                         "weight": "50"
+                    },
+                    {
+                        "id": 3,
+                        "weight": "58"
+                    },
+                    {
+                        "id": 4,
+                        "weight": "49.95"
                     }
                 ]
             },
@@ -203,6 +219,14 @@
                     {
                         "id": 2,
                         "weight": "64"
+                    },
+                    {
+                        "id": 3,
+                        "weight": "63"
+                    },
+                    {
+                        "id": 4,
+                        "weight": "63.93"
                     }
                 ]
             },
@@ -263,5 +287,18 @@
                 }
             ]
         }
-    ]
+    ],
+    "admin": {
+        "details": {
+            "firstName": "Chani",
+            "lastName": "Ziv",
+            "address": {
+                "city": "Bitar",
+                "street": "arimon",
+                "number": "5"
+            },
+            "phone": "0536985214",
+            "email": "Admin@gmail.com"
+        }
+    }
 }

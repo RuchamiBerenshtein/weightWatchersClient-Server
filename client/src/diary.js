@@ -4,8 +4,8 @@ if (!id) {
     location.href = '/login.html';
 }
 
-const url = `http://localhost:3000/users?id=${id}`
-const postUrl = `http://localhost:3000/users/${id}`;
+const url = `https://evening-everglades-98180.herokuapp.com/user/${id}`
+const postUrl = `https://loxalhost:3000/diary/${id}`;
 
 let userDaily;
 
@@ -61,17 +61,21 @@ const formatDate = (date = new Date()) => {
     ].join('-');
 }
 
-const dailyMeals = () => {
-    const request = new XMLHttpRequest();
-    request.open('GET', url);
-    request.send();
-    request.onload = () => {
-        if (request.status !== 200) {
-            alert(`Error ${request.status}: ${request.statusText}`);
-        } else {
-            userDaily = JSON.parse(request.responseText)[0];
+const dailyMeals = async () => {
+    try {
+        const response = await fetch(url);
+        if (response.status !== 200 || response.status === undefined)
+            alert(response.message);
+
+        else {
+            const user = await response.json();
+            userDaily = user.user;
+            console.log(`response ${response.status}`);
             displayDiary();
         }
+    }
+    catch (error) {
+        alert(`you have an error: ${error}`);
     }
 }
 
@@ -133,7 +137,7 @@ const addInput = (td, mealList, mealInputList, count) => {
     td.appendChild(foodInput);
 }
 
-const saveDaily = () => {
+const saveDaily = async () => {
     blur.classList.remove('blur');
     daily.style.display = "none";
 
@@ -153,22 +157,29 @@ const saveDaily = () => {
         userDaily.diary[i] = newDay;;
     }
 
-    fetch(postUrl, {
-        method: `PATCH`,
-        body: JSON.stringify({
-            'diary': userDaily.diary,
-        }),
-        headers: { 'Content-type': `application/json; charset=UTF-8` },
-    }).then((response) => {
+    try {
+        const response = await fetch(postUrl, {
+            method: `PATCH`,
+            body: JSON.stringify({
+                'diary': userDaily.diary,
+            }),
+            headers: { 'Content-type': `application/json; charset=UTF-8` },
+        });
+        if (response.status !== 200 || response.status === undefined) {
+            const message = await response.json();
+            alert(message);
+        }
 
-        if (response.status !== 200 || response.status === undefined)
-            alert(response.message)
-
-        else
+        else {
             dailyMeals();
-    })
-
-    resetArrays();
+        }
+    }
+    catch (error) {
+        alert(`you have an error: ${error}`);
+    }
+    finally {
+        resetArrays();
+    }
 }
 
 const resetArrays = () => {

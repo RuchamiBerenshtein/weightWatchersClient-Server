@@ -10,27 +10,31 @@ class Manager {
         this.users = [];
     }
 
-    getAll() {
-        const request = new XMLHttpRequest()
-        request.open('GET', 'http://localhost:3000/user');
-        request.send();
-        request.onload = () => {
-            if (request.status != 200) {
-                alert(`Error ${request.status}: ${request.statusText}`);
-            } else {
-                this.users = JSON.parse(request.responseText).users;
-                this.displayUsers(this.users);
+    inputs = [];
+
+    async getAll() {
+        const url = new URL('https://evening-everglades-98180.herokuapp.com/user');
+
+        try{
+            const response = await fetch(url);
+            if (response.status !== 200 || response.status === undefined)
+                alert(response.message);
+
+            else{
+                const users = await response.json();
+                this.users = users;
+                this.displayUsers(users);
             }
         }
+        catch (error) {
+            alert(`you have an error: ${error}`);
+        }
     }
-
 
     displayUsers(users) {
         const tBody = document.getElementById('users');
         tBody.innerHTML = '';
-
         const button = document.createElement('button');
-
         users.forEach(user => {
             const id = user.id;
             user = user.details;
@@ -44,9 +48,10 @@ class Manager {
             let textNodeLastName = document.createTextNode(user.lastName);
             td2.appendChild(textNodeLastName);
             let td3 = tr.insertCell(2);
-            let textNodeBMI = document.createTextNode(user.weight[user.weight.length - 1] / (user.hight ** 2));
-            if (user.weight.length > 1) {
-                if (user.weight[user.weight.length - 1] / (user.hight ** 2) >= user.weight[user.weight.length - 2] / (user.hight ** 2)) {
+            const BMI = user.meetings[user.meetings.length - 1].weight / user.hight ** 2;
+            let textNodeBMI = document.createTextNode(BMI.toFixed(2));
+            if (user.meetings.length > 1) {
+                if (BMI >= user.meetings[user.meetings.length - 2].weight / user.hight ** 2) {
                     tr.style.color = 'red';
                 } else {
                     tr.style.color = 'green';
@@ -61,8 +66,6 @@ class Manager {
             td4.appendChild(userDetails);
         });
     }
-
-    inputs = [];
 
     newMeeting() {
         const tBody = document.getElementById('newUsersWeight');
@@ -80,60 +83,82 @@ class Manager {
             let weight = document.createElement("INPUT");
             weight.setAttribute("type", "number");
             weight.setAttribute("step", 0.01);
-            weight.setAttribute("value", user.weight[user.weight.length - 1]);
+            weight.setAttribute("value", user.meetings[user.meetings.length - 1].weight);
             this.inputs.push(weight);
             td2.appendChild(weight);
         })
     }
 
-    saveMeet() {
-        let i = 0;
+    async saveMeet() {
+        let weights = [];
         this.inputs.forEach(weight => {
-            this.users[i].details.weight.push(weight.value);
-
-            //הקריאה הזו לא עובדת היא מחזירה 404
-            fetch(`http://localhost:3000/users/${this.users[i].id}/details`, {
-                method: `PATCH`,
-                body: JSON.stringify({
-                    'weight': this.users.weight,
-                }),
-                headers: { 'Content-type': `application/json; charset=UTF-8` },
-            }).then((response) => {
-                debugger
-                if (response.status !== 200 || response.status === undefined)
-                    alert(response.message)
-
-                else
-                    alert(response.message)
-            })
-            i++;
+            weights.push(weight.value);
         })
+
+        const url = new URL('http://evening-everglades-98180.herokuapp.com/meeting/');
+
+        const response = await fetch(url, {
+            method: `POST`,
+            body: JSON.stringify({
+                'date': document.getElementById('date').value,
+                'weights': weights,
+            }), headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+        
+        
+            if (response.status !== 200 || response.status === undefined)
+                alert(response.message);
+
+            else
+                alert("meeting saved successfully");
+
+        this.getAll();
     }
 
-    searchByFName() {
-        let data = document.getElementById("fname").value;
-        let filteredUser = this.users.filter(user => user.firstName.includes(data));
-        this.displayUsers(filteredUser);
+    async searchByFreeText() {
+        let text = document.getElementById("text").value;
+        const url = new URL(`https://evening-everglades-98180.herokuapp.com/user/search?text=${text}`);
+        try {
+
+            let response = await fetch(url);
+            if (response.status !== 200 || response.status === undefined)
+                alert(response.message);
+
+            else{
+                const users = await response.json();
+                this.displayUsers(users.filterUsers);
+            }
+        }
+        catch (error) {
+            alert(`you have an error: ${error}`);
+        }
     }
 
-    searchByLName() {
-        let data = document.getElementById("lname").value;
-        let filteredUser = this.users.filter(user => user.lastName.includes(data));
-        this.displayUsers(filteredUser);
-    }
-
-    searchByBMI() {
+    async searchByBMI() {
         let minBMI = parseFloat(document.getElementById("minBMI").value);
         let maxBMI = parseFloat(document.getElementById("maxBMI").value);
-        let filteredUser = this.users.filter(user =>
-            user.weight[user.weight.length - 1] / user.hight ** 2 >= minBMI &&
-            user.weight[user.weight.length - 1] / user.hight ** 2 <= maxBMI
-        );
-        this.displayUsers(filteredUser);
-    };
+
+        const url = new URL(`https://evening-everglades-98180.herokuapp.com/user/search?minBMI=${minBMI}&maxBMI=${maxBMI}`);
+
+        try {
+
+            let response = await fetch(url);
+            if (response.status !== 200 || response.status === undefined)
+                alert(response.message);
+
+            else{
+                const users = await response.json();
+                this.displayUsers(users.filterUsers);
+            }
+        }
+        catch (error) {
+            alert(`you have an error: ${error}`);
+        }
+    }
 }
 
 const changePage = (id) => {
-    // debugger
     location.href = `/userDetails.html?id=${id}`
 }

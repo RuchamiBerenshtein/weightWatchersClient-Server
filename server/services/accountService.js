@@ -1,11 +1,16 @@
 const fs = require('fs');
 const jsonData = fs.readFileSync('data/users.json');
 const data = JSON.parse(jsonData);
+const users = data.users;
+const admin= data.admin;
+
 
 const login = async (email) => {
-
-    const user =await data.users.find(user => user.email === email);
-    return await user;
+    let user = users.find(user => user.details.email === email);
+    if (!user) {
+            user = admin;
+    }
+    return user;
 }
 
-module.exports ={login} 
+module.exports = { login } 
