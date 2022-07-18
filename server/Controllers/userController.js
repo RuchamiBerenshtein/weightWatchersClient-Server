@@ -56,35 +56,21 @@ const getUserByID = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { user } = req.body;
+    const { details } = req.body;
 
-    if (id !== user.id) {
-        res.status(400).json({
-            massage: 'there is not a same user'
-        });
-    }
-
-    const existingUser = userService.getById(id);
-    if (!existingUser) {
-        res.status(400).json({
-            massage: 'user is not find'
-        })
-    }
-
-    userService.updateUser(user);
+    userService.updateUser(details, id);
     res.status(200).json({
         massage: 'user is updated'
     })
 }
+
 
 const remove = async (req, res) => {
     const id = parseInt(req.params.id);
 
     try {
         const deleteUser = await userService.deleteUser(id);
-        res.status(200).json({
-            massage: `user ${deleteUser + 1} was deleted`
-        })
+        res.send(deleteUser);
 
     }
     catch (err) {
@@ -94,30 +80,7 @@ const remove = async (req, res) => {
     }
 }
 
-// const addUser = async (req, res) => {
 
-//     try {
-//         if (req.body.user) {
-//             const { user } = req.body;
-
-//             const created = await userService.addUser(user);
-//             res.status(200).json({
-//                 massage: `user created successfully! user id is: ${created}`
-//             })
-//         }
-//         else {
-//             res.status(400).json({
-//                 massage: `you have to send a user`
-//             })
-//         }
-//     }
-//     catch (err) {
-//         res.status(500).json({
-//             massage: `write to json was failed ${err}`
-//         })
-//     }
-
-// }
 
 const addUser = async (req, res) => {
 
