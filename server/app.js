@@ -1,4 +1,5 @@
 const express = require('express');
+const db = require('./DB/dataBase')
 const app = express();
 const cors = require('cors');
 const user = require('./Routs/userRout');
@@ -8,6 +9,8 @@ const account = require('./Routs/accountRout');
 const swaggerUi = require('swagger-ui-express'),
 swaggerDocument = require('./swagger.json');
 const port = 3000;
+
+db.connect();
 
 app.use(cors());
 app.use(express.json());
