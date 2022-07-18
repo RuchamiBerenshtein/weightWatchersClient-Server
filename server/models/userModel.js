@@ -49,7 +49,7 @@ const userSchama = new Schama({
             required: true,
             minlength: 5
         },
-        Address: { type: [addressSchama] },
+        address: { type: [addressSchama] },
         phone: {
             type: String,
             minlength: 9
@@ -65,7 +65,7 @@ const userSchama = new Schama({
             required: true,
             min: 5
         }, 
-        products: [
+        meeting: [
             {
                 
                 id: {
@@ -76,7 +76,9 @@ const userSchama = new Schama({
                     type: Number
                 }
             }],
-        diary:[diarySchema]
+        diary:[
+              diarySchema
+        ]
 
     }
 }, { timestamps: true })

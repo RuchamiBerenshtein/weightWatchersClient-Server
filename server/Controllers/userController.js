@@ -1,11 +1,11 @@
 const userService = require('../services/userService');
+const userModel = require('../models/userModel')
+
 
 const getAll = async (req, res) => {
     try {
         const users = await userService.getAll();
-        res.status(500).json({
-            users
-        })
+        res.send(users)
     }
     catch (err) {
         res.status(500).json({
@@ -94,13 +94,43 @@ const remove = async (req, res) => {
     }
 }
 
+// const addUser = async (req, res) => {
+
+//     try {
+//         if (req.body.user) {
+//             const { user } = req.body;
+
+//             const created = await userService.addUser(user);
+//             res.status(200).json({
+//                 massage: `user created successfully! user id is: ${created}`
+//             })
+//         }
+//         else {
+//             res.status(400).json({
+//                 massage: `you have to send a user`
+//             })
+//         }
+//     }
+//     catch (err) {
+//         res.status(500).json({
+//             massage: `write to json was failed ${err}`
+//         })
+//     }
+
+// }
+
 const addUser = async (req, res) => {
 
     try {
-        if (req.body.user) {
-            const { user } = req.body;
+        if (req.body) {
+            const {id,details } = req.body;
 
-            const created = await userService.addUser(user);
+            let _user= new userModel({
+                id,
+                details
+            });
+    
+            const created = await userService.addUser(_user);
             res.status(200).json({
                 massage: `user created successfully! user id is: ${created}`
             })

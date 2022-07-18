@@ -1,4 +1,5 @@
 const fs = require('fs');
+const userModel = require('../models/userModel')
 
 const data = fs.readFileSync('data/users.json');
 const users = JSON.parse(data).users;
@@ -11,22 +12,33 @@ const saveToFile = async () => {
 }
 
 const getAll = async () => {
+    const users = await userModel.find();
     return users;
 }
 
+// const email = req.params.email;
+// const password = req.params.password;
+
+// const user = await userModel.findOne({ email: email, password: password });
+
+// await res.send(user);
+
 const getById = async (id) => {
-    debugger
-    const user = users.find(user => user.id === id);
+    const user = userModel.findOne({id: id});
     return user;
 }
 
-const addUser = async (user) => {
-    user.id = users.length + 1;
-    users.push(user);
-    await saveToFile();
-    return user.id;
-}
+// const addUser = async (user) => {
+//     user.id = users.length + 1;
+//     users.push(user);
+//     await saveToFile();
+//     return user.id;
+// }
 
+const addUser = async (user) => {
+    const insertedUser=await user.save();
+    return insertedUser;
+}
 const deleteUser = async (id) => {
 
     const index = users.map(user => user.id).indexOf(id);

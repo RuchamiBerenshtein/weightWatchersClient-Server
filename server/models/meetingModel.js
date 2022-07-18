@@ -1,6 +1,5 @@
 
 const mongoose = require('mongoose');
-const category = require('./Category');
 const Schama = mongoose.Schema;
 
 const meetingSchema = new Schama(
