@@ -4,8 +4,8 @@ if (!id) {
     location.href = '/login.html';
 }
 
-const url = `https://evening-everglades-98180.herokuapp.com/user/${id}`
-const postUrl = `https://loxalhost:3000/diary/${id}`;
+const url = new URL(`https://evening-everglades-98180.herokuapp.com/diary/${id}`);
+const postUrl = new URL(`https://localhost:3000/diary/${id}`);
 
 let userDaily;
 
@@ -68,8 +68,8 @@ const dailyMeals = async () => {
             alert(response.message);
 
         else {
-            const user = await response.json();
-            userDaily = user.user;
+            userDaily = await response.json();
+            debugger
             console.log(`response ${response.status}`);
             displayDiary();
         }
@@ -156,15 +156,17 @@ const saveDaily = async () => {
     else {
         userDaily.diary[i] = newDay;;
     }
-
     try {
+        debugger
         const response = await fetch(postUrl, {
-            method: `PATCH`,
-            body: JSON.stringify({
-                'diary': userDaily.diary,
-            }),
-            headers: { 'Content-type': `application/json; charset=UTF-8` },
-        });
+            method: 'PUT',
+            body: JSON.stringify(userDaily.diary),
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin':"https:/serverAddress"
+            },
+        })
+        console.log("responses");
         if (response.status !== 200 || response.status === undefined) {
             const message = await response.json();
             alert(message);
@@ -183,6 +185,7 @@ const saveDaily = async () => {
 }
 
 const resetArrays = () => {
+    debugger
     breakfastInputList = [];
     lunchInputList = [];
     dinnerInputList = [];

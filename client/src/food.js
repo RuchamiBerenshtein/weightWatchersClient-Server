@@ -6,7 +6,7 @@ let autocomplete;
 let autocomplete_result;
 
 
-function importAllProducts() {
+const importAllProducts = () => {
     console.log("importing the list...");
     const options = {
         method: "GET",
@@ -31,7 +31,7 @@ function importAllProducts() {
         .catch((err) => console.error(err));
 }
 
-function addAutocomplete() {
+const addAutocomplete = () => {
     productsNames = productsList.map(product => product.shmmitzrach)
     autocomplete = document.getElementById('searchProduct');
     autocomplete_result = document.getElementById('autocomplete_result');
@@ -41,13 +41,13 @@ function addAutocomplete() {
     autocomplete.addEventListener("focus", updPopup);
 }
 
-function popupClearAndHide() {
+const popupClearAndHide = () => {
     autocomplete_result.innerHTML = "";
     autocomplete_result.style.display = "none";
 }
 
 let c;
-function updPopup() {
+const updPopup = () => {
 
     if (!autocomplete.value) {
         popupClearAndHide();
@@ -73,7 +73,7 @@ function updPopup() {
 }
 
 
-function search() {
+const search = () => {
     console.log("Searching...");
     const productName = document.getElementById("searchProduct").value;
     const data = productsList.filter(p => p.shmmitzrach.includes(productName));
@@ -95,7 +95,7 @@ function search() {
 
 }
 
-function Clear() {
+const Clear = () => {
     document.getElementById("searchProduct").value = '';
     document.querySelector(".selectFood").value = '';
 
