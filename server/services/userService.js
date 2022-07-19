@@ -9,15 +9,22 @@ const getAll = async () => {
 }
 
 const getById = async (id) => {
+<<<<<<< HEAD
     const user =await userModel.findOne({id: id});
+=======
+    const user = userModel.findOne({id: id});
+    if(!user) throw new Error("No user not found with given id");
+>>>>>>> 9f64246912e580726f666d17cc003c6fd365b1b4
     return user;
 }
-
 
 const addUser = async (user) => {
     const insertedUser=await user.save();
     return insertedUser;
+
+
 }
+
 const deleteUser = async (id) => {
     const toDelete = await userModel.deleteOne({ id: id })
     return   toDelete;
@@ -32,8 +39,6 @@ const updateUser = async (details, id) => {
             }
         });
 }
-
-
 
 const searchBMI = async (minBMI, maxBMI) => {
     const filterUsers = [];
