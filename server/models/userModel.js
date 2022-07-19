@@ -76,11 +76,12 @@ const userSchama = new Schama({
                     type: Number
                 }
             }],
-        diary:[
-            {
+        diary:{
+            type : Array,
+           object:{
             type: [diarySchema]    
-        }] 
-
+        }
+}
     }
 }, { timestamps: true })
 

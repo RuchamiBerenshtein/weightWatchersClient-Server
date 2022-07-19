@@ -28,5 +28,8 @@
     "swagger-ui-express": "^4.4.0"
   },
   "keywords": [],
+  "devDependencies": {
+    "jest": "^28.1.3"
+  },
   "description": ""
 }

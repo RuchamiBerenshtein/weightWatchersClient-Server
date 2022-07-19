@@ -1,52 +1,39 @@
 const fs = require('fs');
+const meetingModel = require('../models/meetingModel');
+const userModel = require('../models/userModel');
 
-const usersData = fs.readFileSync('data/users.json');
-const users = JSON.parse(usersData).users;
-
-const meetingsData = fs.readFileSync('data/meeting.json');
-const meetings = JSON.parse(meetingsData).meetings;
-
-
-const saveToMeetingFile = async () => {
-    const json = JSON.stringify({ 'meetings': meetings })
-    await fs.writeFileSync('data/meeting.json', json, (err) => {
-        if (err) throw err;
-    });
-}
-
-const saveToUsersFile = async () => {
-    const json = JSON.stringify({ 'users': users })
-    await fs.writeFileSync('data/users.json', json, (err) => {
-        if (err) throw err;
-    });
-}
 
 const getAll = async () => {
-    return await meetings;
+    const meetings = await meetingModel.find();
+    return meetings;
 }
 
 const getMeetingById = async (id) => {
-    const user = meetings.find(meeting => meeting.id === id);
-    return await user;
+    const meeting =await meetingModel.findOne({id: id});
+    return meeting;
 }
 
-const addMeeting = async (weights, date) => {
-    let meeting = {
-        "id": meetings.length + 1,
-        "date": date
-    }
-    meetings.push(meeting);
+const addMeeting = async (weights, meeting) => {
 
+    const insertedMeeting = await meeting.save();
+
+    const users = await userModel.find();
+    console.log(users);
     let i = 0;
     weights.forEach(weight => {
-        users[i].details.meetings.push({ "id": meeting.id, "weight": weight });
+        users[i].details.meetings.push({ "id": insertedMeeting._id, "weight": weight });
+
+        userModel.updateOne({ id: users[i].id },
+            {
+                $set:
+                {
+                    details: users[i].details
+                }
+            });
         i++;
     })
 
-    await saveToUsersFile();
-    await saveToMeetingFile();
-
-    return meeting;
+    return insertedMeeting;
 }
 
 const updateMeeting = async (meeting, weights) => {
@@ -65,13 +52,13 @@ const updateMeeting = async (meeting, weights) => {
     await saveToUsersFile();
 }
 
-const deleteMeeting = async (id) => {    
+const deleteMeeting = async (id) => {
     const index = meetings.map(meet => meet.id).indexOf(id);
-    
+
     if (index === -1) {
         return;
     }
-    
+
     meetings.splice(index, 1);
 
     for (let i = index; i < meetings.length; i++) {
@@ -86,10 +73,10 @@ const deleteMeeting = async (id) => {
             users[i].details.meetings[j].id -= 1;
         }
     }
-    
+
     await saveToMeetingFile();
     await saveToUsersFile();
-    
+
     return index;
 }
 

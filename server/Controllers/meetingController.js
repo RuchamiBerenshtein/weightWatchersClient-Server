@@ -1,9 +1,10 @@
 const meetingService = require('../services/meetingService');
+const meetingModel = require('../models/meetingModel');
 
 const getAllMeeting = async (req, res) => {
     try {
-        const users = await meetingService.getAll();
-        res.send(users);
+        const meetings = await meetingService.getAll();
+        res.send(meetings);
     }
     catch (err) {
         res.status(500).json({
@@ -33,7 +34,10 @@ const addMeeting = async (req, res) => {
         if (req.body) {
             const { date } = req.body;
             const { weights } = req.body;
-            const created = await meetingService.addMeeting(weights, date);
+            let _meeting= new meetingModel({
+                date
+            });
+            const created = await meetingService.addMeeting(weights, _meeting);
             res.send(created);
         }
         else {
