@@ -1,32 +1,39 @@
 const fs = require('fs');
+const diaryModel = require('../models/diaryModel')
+const userModel = require('../models/userModel');
 
-const data = fs.readFileSync('data/users.json');
-const users = JSON.parse(data).users;
-
-const saveToFile = async () => {
-    const json = JSON.stringify({ 'users': users })
-    await fs.writeFileSync('data/users.json', json, (err) => {
-        if (err) throw err;
-    });
-}
 
 const getDiary = async (id) => {
-    const user = users.find(user => user.id === id);
-    return user.diary;
+    const diaries = diaryModel.find();
+    return diaries;
 }
 
 const addNewDay = async (id, newDay) => {
-    const user = users[users.map(user => user.id).indexOf(id)];
-    newDay.id = user.diary.length + 1;
-    user.diary.push(newDay);
-    await saveToFile();
-    return newDay.id;
+    const insertedDiary = await newDay.save();
+
+    const user =await userModel.findOne({ id: id });
+
+    console.log(user.details);
+    console.log(insertedDiary._id);
+
+    user.details.diary.push({ "id": insertedDiary._id });
+    await updateUser(user.details, user._id);
+    return insertedDiary;
 }
 
+const updateUser = async (details, id) => {
+    await userModel.updateOne({ _id: id },
+        {
+            $set:
+            {
+                details: details
+            }
+        });
+}
 const updateDay = async (id, dayId, day) => {
     const user = users[users.map(user => user.id).indexOf(id)];
     const index = user.diary.map(day => day.id).indexOf(dayId);
-    
+
     if (index === -1)
         return;
 
@@ -42,13 +49,12 @@ const existingDay = async (id, dayId) => {
 
 const deleteDay = async (id, dayId) => {
     const user = users[users.map(user => user.id).indexOf(id)];
-    
     const index = user.diary.map(day => day.id).indexOf(dayId);
-    
+
     if (index === -1) {
         return;
     }
-    
+
     user.diary.splice(index, 1);
 
     await saveToFile();

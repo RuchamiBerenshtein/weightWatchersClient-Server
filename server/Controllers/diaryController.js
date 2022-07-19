@@ -1,5 +1,5 @@
 const diaryService = require('../services/diaryService');
-
+const diaryModel = require('../models/diaryModel')
 
 const getDiary = async (req, res) => {
     const id = parseInt(req.params.id);
@@ -17,19 +17,30 @@ const getDiary = async (req, res) => {
 
 const addNewDay = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { newDay } = req.body;
-    console.log(newDay);
+    const { date,
+        breakfast,
+        lunch,
+        dinner,
+        snack } = req.body;
+    let _diary= new diaryModel({
+        date,
+        breakfast,
+        lunch,
+        dinner,
+        snack
+    });
+    console.log(_diary);
     console.log(id)
 
     try {
-        const dayId = await diaryService.addNewDay(id, newDay);
+        const dayId = await diaryService.addNewDay(id, _diary);
 
         res.status(200).json({
-            massage: `new day created successfully! day id is: ${dayId}`
+           dayId
         })
     } catch (error) {
         res.status(500).json({
-            massage: `writing to json was failed ${err}`
+            massage: `writing to json was failed ${error}`
         })
     }
 }
