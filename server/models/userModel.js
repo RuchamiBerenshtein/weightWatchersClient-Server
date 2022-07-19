@@ -77,8 +77,9 @@ const userSchama = new Schama({
                 }
             }],
         diary:[
-              diarySchema
-        ]
+            {
+            type: [diarySchema]    
+        }] 
 
     }
 }, { timestamps: true })

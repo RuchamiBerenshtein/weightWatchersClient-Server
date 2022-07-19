@@ -1,15 +1,7 @@
 const fs = require('fs');
 const userModel = require('../models/userModel')
 
-// const data = fs.readFileSync('data/users.json');
-// const users = JSON.parse(data).users;
 
-// const saveToFile = async () => {
-//     const json = JSON.stringify({ 'users': users })
-//     await fs.writeFileSync('data/users.json', json, (err) => {
-//         if (err) throw err;
-//     });
-// }
 
 const getAll = async () => {
     const users = await userModel.find();
@@ -17,7 +9,7 @@ const getAll = async () => {
 }
 
 const getById = async (id) => {
-    const user = userModel.findOne({id: id});
+    const user =await userModel.findOne({id: id});
     return user;
 }
 
