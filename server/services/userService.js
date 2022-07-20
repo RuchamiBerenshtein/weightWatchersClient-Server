@@ -9,29 +9,40 @@ const getAll = async () => {
 }
 
 const getById = async (id) => {
-<<<<<<< HEAD
-    const user =await userModel.findOne({id: id});
-=======
-    const user = userModel.findOne({id: id});
-    if(!user) throw new Error("No user not found with given id");
->>>>>>> 9f64246912e580726f666d17cc003c6fd365b1b4
+    const user = userModel.findOne({ id: id });
+    if (!user)
+        throw new Error('No user not found with given id');
     return user;
 }
 
 const addUser = async (user) => {
-    const insertedUser=await user.save();
+    const count = await userModel.countDocuments({
+        $or: [{
+            email: user.details.email
+        }, {
+            phone: user.details.phone
+        }, {
+            firstName: user.details.firstName,
+            lastName: user.details.lastName
+        }
+        ]
+    });
+    if(count > 0) throw new Error('User already exists');
+
+    const insertedUser = await new userModel(
+        user.details,
+        user.diary
+    ).save();
     return insertedUser;
-
-
 }
 
 const deleteUser = async (id) => {
     const toDelete = await userModel.deleteOne({ id: id })
-    return   toDelete;
+    return toDelete;
 }
 
 const updateUser = async (details, id) => {
-    await userModel.updateOne({ id:id },
+    await userModel.updateOne({ id: id },
         {
             $set:
             {

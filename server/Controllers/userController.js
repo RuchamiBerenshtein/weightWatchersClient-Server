@@ -15,14 +15,14 @@ const getAll = async (req, res) => {
 };
 
 const search = async (req, res) => {
-    try{
+    try {
         if (req.query.minBMI) {
             const { minBMI, maxBMI } = req.query;
             const filterUsers = await userService.searchBMI(minBMI, maxBMI);
             res.status(200).json({
                 filterUsers
             })
-            
+
         }
         else {
             const { text } = req.query;
@@ -31,7 +31,7 @@ const search = async (req, res) => {
                 filterUsers
             })
         }
-        
+
     }
     catch {
         res.status(500).json({
@@ -45,9 +45,14 @@ const getUserByID = async (req, res) => {
 
     try {
         const user = await userService.getById(id);
-       res.send(user);
+        res.send(user);
     }
     catch (err) {
+        if (err.message === 'No user not found with given id')
+            res.status(00).json({
+                err
+            })
+
         res.status(500).json({
             massage: `reading from json was failed ${err}`
         })
@@ -64,7 +69,6 @@ const updateUser = async (req, res) => {
     })
 }
 
-
 const remove = async (req, res) => {
     const id = parseInt(req.params.id);
 
@@ -80,20 +84,22 @@ const remove = async (req, res) => {
     }
 }
 
-
-
 const addUser = async (req, res) => {
 
     try {
         if (req.body) {
-            const {id,details } = req.body;
+            const { id, details } = req.body;
 
-            let _user= new userModel({
+            const diary = [];
+
+            let user = new userModel({
                 id,
-                details
+                details,
+                diary
             });
-    
-            const created = await userService.addUser(_user);
+
+            const created = await userService.addUser(user);
+
             res.status(200).json({
                 massage: `user created successfully! user id is: ${created}`
             })
@@ -105,6 +111,11 @@ const addUser = async (req, res) => {
         }
     }
     catch (err) {
+        if (err.message === 'User already exists')
+            res.status(00).json({
+                err
+            })
+
         res.status(500).json({
             massage: `write to json was failed ${err}`
         })
