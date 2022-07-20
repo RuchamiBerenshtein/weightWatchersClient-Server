@@ -1,6 +1,7 @@
 const { type } = require("express/lib/response");
 const { MongoCredentials } = require("mongodb");
 const  Meeting = require('./meetingModel');
+const Diary = require('./diaryModel');
 const mongoose = require("mongoose");
 const Schama = mongoose.Schema;
 
@@ -18,20 +19,6 @@ const addressSchama = new Schama({
     }
 })
 
-const diarySchema = new Schama(
-    {
-       
-        date:{
-            type: String,  
-            required: true
-        },
-        breakfast:[String],
-        lunch:[String],
-        breakfast:[String],
-        breakfast:[String]
-    }, 
-    {timestamps: true}
-)
 
 const userSchama = new Schama({
     id:{
@@ -65,6 +52,13 @@ const userSchama = new Schama({
             required: true,
             min: 5
         }, 
+        diary:[
+            {  
+                id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Diary"
+                }
+            }],
         meeting: [
             {
                 
@@ -75,23 +69,11 @@ const userSchama = new Schama({
                 weight: {
                     type: Number
                 }
-            }],
-        diary:{
-            type : Array,
-           object:{
-            type: [diarySchema]    
-        }
-}
+            }]
     }
 }, { timestamps: true })
 
-userSchama.virtual('userOrders', {
-    ref: 'Orders',
-    localField: '_id',
-    foreignField: 'userId'
-}
-);
 
-userSchama.set('toJSON', { virtuals: true })
+//userSchama.set('toJSON', { virtuals: true })
 
 module.exports = mongoose.model('user', userSchama)

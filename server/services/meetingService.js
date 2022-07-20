@@ -13,27 +13,29 @@ const getMeetingById = async (id) => {
     return meeting;
 }
 
-const addMeeting = async (weights, meeting) => {
-
+const addMeeting = async (weights, meeting) => {``
     const insertedMeeting = await meeting.save();
-
     const users = await userModel.find();
+    console.log(users[1]._id)
     console.log(users);
     let i = 0;
     weights.forEach(weight => {
         users[i].details.meetings.push({ "id": insertedMeeting._id, "weight": weight });
-
-        userModel.updateOne({ id: users[i].id },
-            {
-                $set:
-                {
-                    details: users[i].details
-                }
-            });
+        console.log(users[i].details.meetings)
+        updateUser(users[i].details, users[i].id)
         i++;
     })
 
     return insertedMeeting;
+}
+const updateUser = async (details, id) => {
+    await userModel.updateOne({ id:id },
+        {
+            $set:
+            {
+                details: details
+            }
+        });
 }
 
 const updateMeeting = async (meeting, weights) => {
