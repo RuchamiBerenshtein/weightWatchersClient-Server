@@ -33,7 +33,6 @@ const addMeeting = async (weights, meeting) => {``
         console.log(users[i].details.meetings)
         updateUser(users[i].details, users[i].id)
         i++;
-        console.log(users[i].details.meetings) 
     })
 
     return insertedMeeting;
@@ -49,10 +48,11 @@ const updateMeeting = async (meeting, weights) => {
     meetings[index] = meeting;
 
     for (let i = 0; i < users.length; i++) {
-        const index = users[i].details.meetings.map(meet => meet._id).indexOf(upMeeting._id);
+        const index = users[i].details.meetings.map(meet => meet.id).indexOf(meeting.id);
         users[i].details.meetings[index].weight = weights[i];
     }
- return upMeeting;
+    await saveToMeetingFile();
+    await saveToUsersFile();
 }
 
 const deleteMeeting = async (id) => {
