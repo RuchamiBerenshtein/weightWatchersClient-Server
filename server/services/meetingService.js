@@ -2,7 +2,7 @@ const fs = require('fs');
 const meetingModel = require('../models/meetingModel');
 const userModel = require('../models/userModel');
 
-const users = await userModel.find();
+
 
 
 const updateUser = async (details, id) => {
@@ -28,7 +28,7 @@ const getMeetingById = async (id) => {
 
 const addMeeting = async (weights, meeting) => {``
     const insertedMeeting = await meeting.save();
-    
+    const users = await userModel.find();
     console.log(users[1]._id)
     console.log(users);
     let i = 0;
@@ -37,11 +37,14 @@ const addMeeting = async (weights, meeting) => {``
         console.log(users[i].details.meetings)
         updateUser(users[i].details, users[i].id)
         i++;
+        console.log(users[i].details.meetings) 
     })
 
     return insertedMeeting;
 }
 const updateMeeting = async (meeting, weights) => {
+    const users = await userModel.find();
+    console.log(users);
  const upMeeting   =await userModel.updateOne({ id:id },
         {
             $set:
@@ -51,11 +54,10 @@ const updateMeeting = async (meeting, weights) => {
         });
 
     for (let i = 0; i < users.length; i++) {
-        const index = users[i].details.meetings.map(meet => meet.id).indexOf(meeting.id);
+        const index = users[i].details.meetings.map(meet => meet._id).indexOf(upMeeting._id);
         users[i].details.meetings[index].weight = weights[i];
     }
-    await saveToMeetingFile();
-    await saveToUsersFile();
+ return upMeeting;
 }
 
 const deleteMeeting = async (id) => {

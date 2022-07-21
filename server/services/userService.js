@@ -13,26 +13,10 @@ const getById = async (id) => {
     if (!user)
         throw new Error('No user not found with given id');
     return user;
-}
+ }
 
-const addUser = async (user) => {
-    const count = await userModel.countDocuments({
-        $or: [{
-            email: user.details.email
-        }, {
-            phone: user.details.phone
-        }, {
-            firstName: user.details.firstName,
-            lastName: user.details.lastName
-        }
-        ]
-    });
-    if(count > 0) throw new Error('User already exists');
-
-    const insertedUser = await new userModel(
-        user.details,
-        user.diary
-    ).save();
+ const addUser = async (user) => {
+    const insertedUser = await user.save();
     return insertedUser;
 }
 

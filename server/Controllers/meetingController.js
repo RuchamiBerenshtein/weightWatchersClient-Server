@@ -55,7 +55,10 @@ const addMeeting = async (req, res) => {
 
 const updateMeeting = async (req, res) => {
     const id = parseInt(req.params.id);
-    const { meeting } = req.body;
+    const { date } = req.body;
+    let _meeting= new meetingModel({
+        date
+    });
     const { weights } = req.body;
 
     if (id !== meeting.id) {

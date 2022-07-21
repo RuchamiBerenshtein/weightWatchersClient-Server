@@ -10,7 +10,7 @@ describe('User Service Unit Tests', () => {
     })
 
     describe('Save User functionality', () => {
-        it('should successfully add a user if the number of users in the DB with the same email or phone or firstName and lastName is zero', async () => {
+        it('should successfully add an user if the number of users in the DB with the same email or phone or firstName and lastName is zero', async () => {
             const id = 1;
             const details = {
                 firstName: "Mina",
@@ -177,6 +177,20 @@ describe('User Service Unit Tests', () => {
             await userService.getById(id).catch((error) => {
                 expect(error.message).to.equal('No user not found with given id')
             });
+        });
+    });
+    describe('Delete user', () => {
+        it('should successfully delete an user ', async () => {
+
+        const id= 1;
+        const result = {
+            acknowledged: true,
+            deletedCount: 1
+        }
+            sinon.stub(userModel, 'deleteOne').returns(result);
+
+            const toDelete = await userService.deleteUser(id);
+            expect(toDelete).to.equal(result);
         });
     });
 });
