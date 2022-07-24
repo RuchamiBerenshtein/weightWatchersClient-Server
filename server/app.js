@@ -9,6 +9,7 @@ const account = require('./Routs/accountRout');
 const swaggerUi = require('swagger-ui-express'),
 swaggerDocument = require('./swagger.json');
 const { auth } = require('express-openid-connect');
+const { requiresAuth } = require('express-openid-connect');
 
 require("dotenv").config();
 
@@ -24,16 +25,6 @@ const config = {
 
 db.connect();
 
-
-// const config = {
-//   authRequired: false,
-//   auth0Logout: true,
-//   secret: 'a long, randomly-generated string stored in env',
-//   baseURL: 'http://localhost:3000',
-//   clientID: 'PUXVNcvCQ5hIfUWZvFrXayrZIEAEBSDk',
-//   issuerBaseURL: 'https://dev-wvph8f3k.us.auth0.com'
-// };
-
 app.use(auth(config));
 
 app.get('/', (req, res) => {
@@ -46,25 +37,18 @@ app.get('/profile', (req, res) => {
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
-// app.use('/user', requiresAuth(), user);
-// app.use('/diary', requiresAuth(), diary);
-// app.use('/account',requiresAuth(),  account);
-// app.use('/meeting', requiresAuth(), meeting);
+
+app.use(requiresAuth());
+
 app.use('/user', user);
 app.use('/diary', diary);
 app.use('/account', account);
 app.use('/meeting', meeting);
 
-// auth router attaches /login, /logout, and /callback routes to the baseURL
-// app.use(auth(config));
+app.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
 
-// const { requiresAuth } = require('express-openid-connect');
-
-// app.get('/profile', requiresAuth(), (req, res) => {
-//   res.send(JSON.stringify(req.oidc.user));
-// });
-
-// req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
