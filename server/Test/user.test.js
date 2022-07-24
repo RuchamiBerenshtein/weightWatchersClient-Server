@@ -173,10 +173,15 @@ describe('User Service Unit Tests', () => {
 
         it('should give error if invalid if there is no user found with provided id', async () => {
             const id = 1;
-            sinon.stub(userModel, 'findOne').returns(null)
-            await userService.getById(id).catch((error) => {
-                expect(error.message).to.equal('No user not found with given id')
-            });
+            sinon.stub(userModel, 'findOne').returns(null);
+            try {
+                await userService.getById(id)
+            }
+            catch {
+                ((error) => {
+                    expect(error.message).to.equal('No user not found with given id')
+                })
+            };
         });
     });
 });
