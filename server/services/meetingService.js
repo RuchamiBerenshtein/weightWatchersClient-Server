@@ -2,6 +2,15 @@ const fs = require('fs');
 const meetingModel = require('../models/meetingModel');
 const userModel = require('../models/userModel');
 
+const updateUser = async (details, id) => {
+    await userModel.updateOne({ id:id },
+        {
+            $set:
+            {
+                details: details
+            }
+        });
+}
 
 const getAll = async () => {
     const meetings = await meetingModel.find();
@@ -28,15 +37,7 @@ const addMeeting = async (weights, meeting) => {``
 
     return insertedMeeting;
 }
-const updateUser = async (details, id) => {
-    await userModel.updateOne({ id:id },
-        {
-            $set:
-            {
-                details: details
-            }
-        });
-}
+
 
 const updateMeeting = async (meeting, weights) => {
     const index = meetings.map(meet => meet.id).indexOf(meeting.id);

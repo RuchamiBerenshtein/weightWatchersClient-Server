@@ -89,13 +89,9 @@ const addUser = async (req, res) => {
     try {
         if (req.body) {
             const { id, details } = req.body;
-
-            const diary = [];
-
             let user = new userModel({
                 id,
-                details,
-                diary
+                details
             });
 
             const created = await userService.addUser(user);
@@ -111,11 +107,6 @@ const addUser = async (req, res) => {
         }
     }
     catch (err) {
-        if (err.message === 'User already exists')
-            res.status(00).json({
-                err
-            })
-
         res.status(500).json({
             massage: `write to json was failed ${err}`
         })
