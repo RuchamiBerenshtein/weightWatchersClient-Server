@@ -24,7 +24,7 @@ const config = {
   clientID: 'PUXVNcvCQ5hIfUWZvFrXayrZIEAEBSDk',
   issuerBaseURL: 'https://dev-wvph8f3k.us.auth0.com'
 };
-
+app.use(cors());
 app.use(auth(config));
 
 app.get('/', (req, res) => {
@@ -33,12 +33,13 @@ app.get('/', (req, res) => {
 app.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
-app.use(cors());
+
+
 app.use(express.json());
 app.use(express.urlencoded());
 app.use('/user', requiresAuth(), user);
 app.use('/diary', requiresAuth(), diary);
-app.use('/account',requiresAuth(),  account);
+app.use('/account',account);
 app.use('/meeting', requiresAuth(), meeting);
 //app.use('/user', user);
 // app.use('/diary', diary);
