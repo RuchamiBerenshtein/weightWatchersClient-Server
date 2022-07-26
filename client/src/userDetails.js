@@ -1,11 +1,11 @@
 const searchParams = new URLSearchParams(location.search);
-const id = parseInt(searchParams.get('id'));
-if (!id) {
-    location.href = '/login.html';
-}
+const email = parseInt(searchParams.get('email'));
+// if (!email) {
+//     location.href = '/login.html';
+// }
 
 let user = null;
-const Url = `http://localhost:3000/user/`+ id;
+const Url = `http://localhost:3000/user/`+ email;
 
 const findUser = () => {
    
