@@ -52,13 +52,6 @@ const userSchama = new Schama({
             required: true,
             min: 5
         }, 
-        diary:[
-            {  
-                id: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "Diary"
-                }
-            }],
         meeting: [
             {
                 
@@ -70,7 +63,14 @@ const userSchama = new Schama({
                     type: Number
                 }
             }]
-    }
+    },
+    diary:[
+        {  
+            id: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Diary"
+            }
+        }]
 }, { timestamps: true })
 
 

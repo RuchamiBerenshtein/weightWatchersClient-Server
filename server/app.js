@@ -11,29 +11,29 @@ swaggerDocument = require('./swagger.json');
 const { auth } = require('express-openid-connect');
 const { requiresAuth } = require('express-openid-connect');
 
-require("dotenv").config();
+// require("dotenv").config();
 
 const port = 3000;
-const config = {
-  authRequired: false,
-  auth0Logout: true,
-  secret: 'yRs4i-KNyqjNV-JQz2lYW0lOtlBZf9yS_ISzi9c0go_Bb5o47BwyIG3fv7X2cPdw',
-  baseURL: 'http://localhost:3000',
-  clientID: '420F0Ya1QUq6QlBUHxgPAZeYdi0EVEaz',
-  issuerBaseURL: 'https://dev-yi6ikgik.us.auth0.com'
-};
+// const config = {
+//   authRequired: false,
+//   auth0Logout: true,
+//   secret: 'yRs4i-KNyqjNV-JQz2lYW0lOtlBZf9yS_ISzi9c0go_Bb5o47BwyIG3fv7X2cPdw',
+//   baseURL: 'http://localhost:3000',
+//   clientID: '420F0Ya1QUq6QlBUHxgPAZeYdi0EVEaz',
+//   issuerBaseURL: 'https://dev-yi6ikgik.us.auth0.com'
+// };
 
 db.connect();
 
-app.use(auth(config));
+// app.use(auth(config));
 
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-});
-//  requiresAuth(),
-app.get('/profile', (req, res) => {
-  res.send(JSON.stringify(req.oidc.user));
-});
+// app.get('/', (req, res) => {
+//   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+// });
+// //  requiresAuth(),
+// app.get('/profile', (req, res) => {
+//   res.send(JSON.stringify(req.oidc.user));
+// });
 
 
 app.use(express.json());
@@ -46,13 +46,13 @@ app.use('/diary', diary);
 app.use('/account', account);
 app.use('/meeting', meeting);
 
-app.get('/profile', requiresAuth(), (req, res) => {
-  res.send(JSON.stringify(req.oidc.user));
-});
+// app.get('/profile', requiresAuth(), (req, res) => {
+//   res.send(JSON.stringify(req.oidc.user));
+// });
 
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-});
+// app.get('/', (req, res) => {
+//   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+// });
 
 
 app.use(
