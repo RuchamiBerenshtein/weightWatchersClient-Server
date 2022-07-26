@@ -40,11 +40,11 @@ const search = async (req, res) => {
     }
 }
 
-const getUserByID = async (req, res) => {
-    const id = parseInt(req.params.id);
+const getUserByEmail = async (req, res) => {
+    const email = parseInt(req.params.email);
 
     try {
-        const user = await userService.getById(id);
+        const user = await userService.getById(email);
         res.send(user);
     }
     catch (err) {
@@ -117,7 +117,7 @@ const addUser = async (req, res) => {
 module.exports = {
     getAll,
     search,
-    getUserByID,
+    getUserByEmail,
     updateUser,
     remove,
     addUser,

@@ -51,7 +51,8 @@ const userSchama = new Schama({
             type: Number,
             required: true,
             min: 5
-        }, 
+        } 
+        ,
         meeting: [
             {
                 

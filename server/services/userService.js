@@ -8,8 +8,8 @@ const getAll = async () => {
     return users;
 }
 
-const getById = async (id) => {
-    const user = userModel.findOne({ id: id });
+const getById = async (email) => {
+    const user = userModel.findOne({ email: email });
     if (!user)
         throw new Error('No user not found with given id');
     return user;

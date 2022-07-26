@@ -6,7 +6,7 @@ router.get('/', userController.getAll);
 
 router.get('/search', userController.search);
 
-router.get('/:id', userController.getUserByID);
+router.get('/:email', userController.getUserByEmail);
 
 router.put('/:id', userController.updateUser);
 
